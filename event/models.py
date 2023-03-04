@@ -38,3 +38,7 @@ class UserAppliedforEvents(models.Model):
     user = models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True,blank=True)
     event = models.ForeignKey(Events,on_delete=models.CASCADE,null=True,blank=True)
     applied_at = models.DateTimeField(auto_now=True,null=True,blank=True)
+
+
+class Interest(models.Model):
+    value = models.CharField(max_length=100,null=True,blank=True)
