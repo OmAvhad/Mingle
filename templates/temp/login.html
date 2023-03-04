@@ -12,7 +12,7 @@
       </div>
       <div class="flex flex-2">
         <div class="back-arrow">
-          <a href="{% url 'UserAccounts:index' %}" class="nav-link active">
+          <a href="/" class="nav-link active">
           <svg
             width="22"
             height="22"
@@ -33,7 +33,7 @@
 
         <div class="signup-form">
           <div class="signup-title">Login to Mingle</div>
-          <div class="redirect-register">Haven't registered yet? <a href="{% url 'UserAccounts:index' %}#section2">Register Now</a></div>
+          <div class="redirect-register">Haven't registered yet? <a href="/#section2">Register Now</a></div>
 <form action="" method="POST">
           <div class="signup-detail">
             {% csrf_token %}
