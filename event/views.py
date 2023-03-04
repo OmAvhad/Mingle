@@ -9,6 +9,9 @@ from django.contrib.auth.decorators import login_required
 from rest_framework.decorators import api_view
 
 from datetime import datetime
+from fuzzywuzzy import fuzz
+
+
 # @transaction.atomic
 # @login_required
 @api_view(['POST'])
@@ -83,8 +86,10 @@ def getEvent(request):
 def registerForEvent(request):
     event_id = request.query_params.get('event_id')
     user_id = request.query_params.get('user_id')
+    # tb = UserAppliedforEvents.objects.filter().last()
+    # tb.delete()
     user_applied_for = UserAppliedforEvents.objects
-    if user_applied_for.filter(event=event_id).exists():
+    if user_applied_for.filter(event=event_id,user__id=user_id).exists():
         return JsonResponse({"message":"Registration already Done!"})
     else:
         event = Events.objects.filter(id=event_id).last()
@@ -92,7 +97,7 @@ def registerForEvent(request):
         print("user:",user)
 
     #Creating Connection
-        createConnection(request)
+        createConnection(request,event_id)
 
         UserAppliedforEvents.objects.create(user=user,event=event)
         return JsonResponse({"message":"Registeration is Done"})
@@ -105,9 +110,52 @@ def getRegisterData(request):
     return JsonResponse({"data":data})
 
 
-def createConnection(request):
-
-    CustomUser.objects.filter(user)
+def createConnection(request,event_id):
     
+    user_id = request.query_params.get('user_id')
+
+    interest = CustomUser.objects.filter(id=user_id).first().interests
+    u_id = UserAppliedforEvents.objects.filter(event__id=event_id).values_list('user__id')
+
+    temp = CustomUser.objects.filter(id__in=u_id,interests__contains=['girls','boys']) 
+    print("temp ::: ", temp)
+
+    temp_list = []
+    for i in interest:
+        
+        t = CustomUser.objects.filter(id__in=u_id,interests__icontains=i)     
+       
+        temp_list.append(t)
+    
+    qs = temp_list[0]
+    
+    # temp_list = [x for x in temp_list if x is not None]
+    print("temp_list",temp_list)
+
+    for t in range(len(temp_list) - 1):
+        qs = qs.union(temp_list[t+1])
+    
+    print("qs :: ", qs)
+    
+    ftl = []
+
+    for q in qs:
+
+        inrts = q.interests
+
+        test_list = []
+        for i in interest:
+            for p in inrts:
+                test_list.append(fuzz.ratio(i, p))
+
+        ftl.append(sum(test_list))
+        
+    
+    m = max(ftl)
+    mi = ftl.index(m)
+
+    print("final :: ", qs[mi])
+
+
 
 
