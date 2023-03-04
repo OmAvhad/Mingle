@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils.translation import gettext_lazy as _
+from django.contrib.postgres.fields import ArrayField
 
 # Create your models here.
 
@@ -45,11 +46,21 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     # this fields are mandatory for all type of users
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=150, blank=True, null=True)
+    user_type = models.CharField(max_length=30, blank=True, null=True)
 
     # this fields for individual user
     first_name = models.CharField(max_length=100, blank=True, null=True)
     last_name = models.CharField(max_length=100, blank=True, null=True)
     mobile_number = models.CharField(max_length=20, blank=True, null=True)
+
+    # details
+    gender = models.CharField(max_length=10, blank=True, null=True)
+    gender_on_profile = models.BooleanField(default=False)
+    birthdate = models.DateField(blank=True, null=True)
+    interested_in_gender = models.CharField(max_length=10, blank=True, null=True)
+
+    interests = ArrayField(models.CharField(max_length=25, blank=True), size=8, blank=True, null=True)
+    looking_for = models.CharField(max_length=50, blank=True, null=True)
 
     is_verified = models.BooleanField(default=False)
     email_verified_at = models.DateTimeField(blank=True, null=True)
