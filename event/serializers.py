@@ -13,3 +13,8 @@ class UserAppliedforEventsSerializer(serializers.ModelSerializer):
         model = UserAppliedforEvents
         fields = '__all__'
         
+class RateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Rate
+        fields = '__all__'
+        
