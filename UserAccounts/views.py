@@ -140,14 +140,16 @@ def ProfileDetails(request):
         if request.user.is_authenticated:
 
             user = CustomUser.objects.filter(email=request.user.email)
+            # itr = str(rd['interests']).replace('"', '').replace('[', '').replace(']', '').split(',')
+            itr=""
             user.update(gender=rd['gender'], gender_on_profile=rd['gop'], birthdate=rd['bdate'], 
-                        interested_in_gender=rd['iig'], interests=rd['interests'].split(','), 
+                        interested_in_gender=rd['iig'], interests=itr, 
                         looking_for=rd['lf'])
             user.save()
             
-            return JsonResponse({"status":True})
+            # return JsonResponse({"status":True})
 
-            # return redirect('/dashboard')
+            return redirect('/dashboard')
 
         return HttpResponse("<h1>UnAuthorized</h1>")
 
