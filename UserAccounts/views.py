@@ -91,7 +91,7 @@ def Login(request):
         print("rd :: ", rd)
 
         user = auth.authenticate(email=rd['email'], password=rd['password'])
-
+        
         if user is not None:
             auth.login(request, user)
 
@@ -105,14 +105,17 @@ def Index(request):
     return render(request, 'main/index.html')
 
 
+def event_detials(request):
+    return render(request, 'events/event_details.html')
 
+def user_dashboard(request):
+    return render(request, 'user/dashboard.html')
 
+def user_profile(request):
+    return render(request, 'user/profile.html')
 
+def org_dashboard(request):
+    return render(request, 'org/dashboard.html')
 
-
-
-
-
-
-
-
+def org_profile(request):
+    return render(request, 'org/profile.html')
