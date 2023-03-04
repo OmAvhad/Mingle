@@ -38,5 +38,5 @@ class UserAppliedforEvents(models.Model):
     applied_at = models.DateTimeField(auto_now=True,null=True,blank=True)
 
 
-class Interest(models.Model):
+class Passions(models.Model):
     value = models.CharField(max_length=100,null=True,blank=True)
