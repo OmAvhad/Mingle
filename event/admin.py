@@ -3,3 +3,4 @@ from .models import *
 # Register your models here.
 admin.site.register(Events)
 admin.site.register(UserAppliedforEvents)
+admin.site.register(Interest)
