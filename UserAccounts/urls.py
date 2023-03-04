@@ -17,6 +17,7 @@ urlpatterns = [
     path('profile/details', ProfileDetails, name="profile-details"),
     
     # org
+    path('org/register', Register, name="org_register"),
     path('org/dashboard', org_dashboard, name="org_dash"),
     path('org/profile', org_profile, name="org_profile"),
 ]
