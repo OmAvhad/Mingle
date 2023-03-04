@@ -7,73 +7,42 @@
 
 
 <section class="container">
-    <header>ADD YOUR DETAILS</header>
+    <header>CREATE EVENT</header>
     <form action="/account/register" method="POST">
         {% csrf_token %}
 
         <div class="mb-3 p-1">
-            <h5><label for="exampleFormControlInput1" class="form-label">Name</label></h5>
-            <input type="name" class="form-control" id="name" placeholder="{{username}}">
+            <h5><label for="exampleFormControlInput1" class="form-label">Event Name</label></h5>
+            <input type="name" class="form-control" id="event_name" placeholder="Dating Club">
         </div>
 
         <div class="mb-3 p-1">
-            <h5><label for="exampleFormControlInput1" class="form-label">Birthday</label></h5>
-            <input type="date" class="form-control" id="date" placeholder="">
-        </div>
-        <div class="mb-3 p-1">
-            <h5><label for="exampleFormControlInput1" class="form-label">Gender</label><br></h5>
+          <h5><label for="exampleFormControlInput1" class="form-label">Cover Picture</label></h5>
+          <input type="file" class="form-control" id="cover_picture" accept="image/png, image/gif, image/jpeg">
+      </div>
 
-            <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined-1" autocomplete="off">
-            <label class="btn btn-outline-danger" for="danger-outlined-1">Male</label>
-
-            <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined-2" autocomplete="off">
-            <label class="btn btn-outline-danger" for="danger-outlined-2">Female</label>
-
-            <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined-3" autocomplete="off">
-            <label class="btn btn-outline-danger" for="danger-outlined-3">Others</label>
-            <br>
-            <div class="mb-3 mt-1 form-check text-secondary">
-                <input type="checkbox" class="form-check-input p-1" id="exampleCheck1">
-                <label class="form-check-label label-danger" for="exampleCheck1">Show my gender on my profile</label>
-            </div>
-        </div>
+      <div class="mb-3 p-1">
+        <h5><label for="exampleFormControlInput1" class="form-label">Description</label></h5>
+        <textarea type="name" class="form-control" id="desc" placeholder="Dating Club"></textarea>
+    </div>
 
         <div class="mb-3 p-1">
-            <h5><label for="exampleFormControlInput1" class="form-label">Show me:</label></h5>
-
-            <input type="radio" class="btn-check" name="options-outlined-2" id="danger-outlined-4" autocomplete="off">
-            <label class="btn btn-outline-danger" for="danger-outlined-4">Male</label>
-
-            <input type="radio" class="btn-check" name="options-outlined-2" id="danger-outlined-5" autocomplete="off">
-            <label class="btn btn-outline-danger" for="danger-outlined-5">Female</label>
-
-            <input type="radio" class="btn-check" name="options-outlined-2" id="danger-outlined-6" autocomplete="off">
-            <label class="btn btn-outline-danger" for="danger-outlined-6">Others</label>
+            <h5><label for="exampleFormControlInput1" class="form-label">Event Date</label></h5>
+            <input type="datetime-local" class="form-control" id="event_date" name="event_date">
         </div>
-
-        <!-- Button trigger modal -->
         <div class="mb-3 p-1">
-            <h5><label for="exampleFormControlInput1" class="form-label">Passion</label></h5>
-            <button type="button" class="btn btn-outline-secondary text-center" data-bs-toggle="modal"
-                data-bs-target="#exampleModal">
-                + Add Passion
-            </button>
-            <div class="m-2">
-                <button class="btn btn-danger" disabled> Sports </button>
-            </div>
-        </div>
-
-        <div class="mb-3 p-1">
-            <h5><label for="exampleFormControlInput1" class="form-label">Looking for</label></h5>
-            <button type="button" class="btn btn-outline-secondary text-center" data-bs-toggle="modal"
-                data-bs-target="#looking">
-                + Add Relationship Intent
-            </button>
-            <div class="m-2">
-                <button class="btn btn-danger" disabled> Short-term fun </button>
-            </div>
-        </div>
-        <button class="cn" style="float: right;"><a class="text-white" href="/">Register</a></button>
+          <h5><label for="exampleFormControlInput1" class="form-label">Registeration Limit</label></h5>
+          <input type="number" class="form-control" id="reg_limit" placeholder="No of Peoples">
+      </div>
+      <div class="mb-3 p-1">
+        <h5><label for="exampleFormControlInput1" class="form-label">Registration Starts At</label></h5>
+        <input type="datetime-local" class="form-control" id="event_start_date" name="event_start_date">
+    </div>
+    <div class="mb-3 p-1">
+      <h5><label for="exampleFormControlInput1" class="form-label">Registration Ends At</label></h5>
+      <input type="datetime-local" class="form-control" id="event_end_date" name="event_end_date">
+  </div>
+        <button class="cn" style="float: right;"><a class="text-white" href="/">Create</a></button>
     </form>
 </section>
 

@@ -10,5 +10,5 @@ urlpatterns = [
     path('get-event-list-org/',getEventListOrg),
     path('register-for-event/',registerForEvent),
     path('get-register-data/',getRegisterData),
-    path('create-event/',create_event)
+    path('org/create-event/',create_event)
 ]
