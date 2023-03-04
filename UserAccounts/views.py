@@ -91,7 +91,7 @@ def Login(request):
         print("rd :: ", rd)
 
         user = auth.authenticate(email=rd['email'], password=rd['password'])
-
+        
         if user is not None:
             auth.login(request, user)
 

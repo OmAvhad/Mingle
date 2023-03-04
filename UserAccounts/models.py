@@ -45,6 +45,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     # this fields are mandatory for all type of users
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=150, blank=True, null=True)
+    user_type = models.CharField(max_length=30, blank=True, null=True)
 
     # this fields for individual user
     first_name = models.CharField(max_length=100, blank=True, null=True)
