@@ -19,7 +19,7 @@ def addEvent(request):
     data = request.data 
     user_id = request.query_params.get('id')
     user = CustomUser.objects.filter(id=user_id).last()
-    query_set = Events.objects.filter(email=data.get('email'),event_name=data.get('event_name'))
+    query_set = Events.objects.filter(user__id=data.get('id'),event_name=data.get('event_name'))
     if query_set.exists():
         return JsonResponse({"message":"Event Already Added"})
     else:
@@ -34,18 +34,15 @@ def addEvent(request):
         
 
 @api_view(['GET'])
-
-def getEventListUser(request):
-    
+def getEventListOrg(request):
     user_id = request.query_params.get('id')
     queryset = Events.objects.filter(user=user_id)
-    
     serialized_data = EventSerializer(queryset,many=True).data
     return JsonResponse({"data":serialized_data})
 
 #Showing Upcoming hackathon
 @api_view(['GET'])
-def getEventListUser(request):
+def getEventList(request):
     event = Events.objects.filter(date__gte=datetime.now())
     data = EventSerializer(event,many=True).data
     return JsonResponse({"msg":"upcoming hackathon","data":data})
@@ -75,7 +72,6 @@ def getEvent(request):
     id = request.query_params.get('id')
     event = Events.objects.filter(id=id)
     if event!=None:
-        
         return JsonResponse({"data":list(event.values())})
     else:
         return JsonResponse({"msg":"No Such Event Found"})
@@ -159,3 +155,5 @@ def createConnection(request,event_id):
 
 
 
+def create_event(request):
+    return render(request, 'events/create_event.html')
