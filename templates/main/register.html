@@ -9,32 +9,32 @@
 
 <section class="container">
     <header>ADD YOUR DETAILS</header>
-    <form action="/account/register" method="POST">
+    <form >
         {% csrf_token %}
 
         <div class="mb-3 p-1">
             <h5><label for="exampleFormControlInput1" class="form-label">Name</label></h5>
-            <input type="name" class="form-control" id="name" placeholder="{{username}}">
+            <input type="name" name="first_name" class="form-control" id="name" placeholder="{{request.user.first_name}}">
         </div>
 
         <div class="mb-3 p-1">
             <h5><label for="exampleFormControlInput1" class="form-label">Birthday</label></h5>
-            <input type="date" class="form-control" id="date" placeholder="">
+            <input type="date" class="form-control" name="" id="birth-date" placeholder="">
         </div>
         <div class="mb-3 p-1">
             <h5><label for="exampleFormControlInput1" class="form-label">Gender</label><br></h5>
 
-            <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined-1" autocomplete="off">
+            <input type="radio" class="btn-check" name="gender" id="danger-outlined-1" autocomplete="off"  value="1" onclick="getGender('Male')">
             <label class="btn btn-outline-danger" for="danger-outlined-1">Male</label>
 
-            <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined-2" autocomplete="off">
+            <input type="radio" class="btn-check" name="gender" id="danger-outlined-2" autocomplete="off" value="2" onclick="getGender('Female')">
             <label class="btn btn-outline-danger" for="danger-outlined-2">Female</label>
 
-            <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined-3" autocomplete="off">
+            <input type="radio" class="btn-check" name="gender" id="danger-outlined-3" autocomplete="off" value="3" onclick="getGender('Others')">
             <label class="btn btn-outline-danger" for="danger-outlined-3">Others</label>
             <br>
             <div class="mb-3 mt-1 form-check text-secondary">
-                <input type="checkbox" class="form-check-input p-1" id="exampleCheck1">
+                <input type="checkbox" class="form-check-input p-1" id="show_gender" onclick="setGOP()">
                 <label class="form-check-label label-danger" for="exampleCheck1">Show my gender on my profile</label>
             </div>
         </div>
@@ -42,13 +42,13 @@
         <div class="mb-3 p-1">
             <h5><label for="exampleFormControlInput1" class="form-label">Show me:</label></h5>
 
-            <input type="radio" class="btn-check" name="options-outlined-2" id="danger-outlined-4" autocomplete="off">
+            <input type="radio" class="btn-check" name="options-outlined-2" id="danger-outlined-4" autocomplete="off" onclick="getInterestedGender('Male')">
             <label class="btn btn-outline-danger" for="danger-outlined-4">Male</label>
 
-            <input type="radio" class="btn-check" name="options-outlined-2" id="danger-outlined-5" autocomplete="off">
+            <input type="radio" class="btn-check" name="options-outlined-2" id="danger-outlined-5" autocomplete="off" onclick="getInterestedGender('Female')">
             <label class="btn btn-outline-danger" for="danger-outlined-5">Female</label>
 
-            <input type="radio" class="btn-check" name="options-outlined-2" id="danger-outlined-6" autocomplete="off">
+            <input type="radio" class="btn-check" name="options-outlined-2" id="danger-outlined-6" autocomplete="off" onclick="getInterestedGender('Others')">
             <label class="btn btn-outline-danger" for="danger-outlined-6">Others</label>
         </div>
 
@@ -59,8 +59,8 @@
                 data-bs-target="#exampleModal">
                 + Add Passion
             </button>
-            <div class="m-2">
-                <button class="btn btn-danger" disabled> Sports </button>
+            <div class="m-2" id="selected_passion">
+                
             </div>
         </div>
 
@@ -70,11 +70,10 @@
                 data-bs-target="#looking">
                 + Add Relationship Intent
             </button>
-            <div class="m-2">
-                <button class="btn btn-danger" disabled> Short-term fun </button>
+            <div class="m-2" id="selected_lf">
             </div>
         </div>
-        <button class="cn" style="float: right;"><a class="text-white" href="/">Register</a></button>
+        <button class="cn" style="float: right;" onclick="submitForm()" type="button"><a class="text-white">Register</a></button>
     </form>
 </section>
 
@@ -91,52 +90,17 @@
             <div class="modal-body">
                 <form action="">
                     <div class="m-2" style="float: left;">
-                        <input type="checkbox" class="btn-check mb-2" name="options-outlined" id="check-1"
-                            autocomplete="off">
-                        <label class="btn btn-outline-danger" for="check-1">Sports</label>
+                        {% for p in passions%}
+                            <input type="checkbox" class="btn-check mb-2" name="options-outlined" id="check-{{p.id}}"
+                                autocomplete="off" onclick="getPassions('{{p.value}}')">
+                            <label class="btn btn-outline-danger" for="check-{{p.id}}">{{p.value}}</label>
+                        {% endfor %}
                     </div>
-                    <div class="m-2" style="float: left;">
-                        <input type="checkbox" class="btn-check mb-2" name="options-outlined" id="check-2"
-                            autocomplete="off">
-                        <label class="btn btn-outline-danger" for="check-2">Harry Potter</label>
-                    </div>
-                    <div class="m-2" style="float: left;">
-                        <input type="checkbox" class="btn-check mb-2" name="options-outlined" id="check-3"
-                            autocomplete="off">
-                        <label class="btn btn-outline-danger" for="check-3">SPA</label>
-                    </div>
-                    <div class="m-2" style="float: left;">
-                        <input type="checkbox" class="btn-check mb-2" name="options-outlined" id="check-4"
-                            autocomplete="off">
-                        <label class="btn btn-outline-danger" for="check-4">Self Care</label>
-                    </div>
-                    <div class="m-2" style="float: left;">
-                        <input type="checkbox" class="btn-check mb-2" name="options-outlined" id="check-5"
-                            autocomplete="off">
-                        <label class="btn btn-outline-danger" for="check-5">Ludo</label>
-                    </div>
-                    <div class="m-2" style="float: left;">
-                        <input type="checkbox" class="btn-check mb-2" name="options-outlined" id="check-6"
-                            autocomplete="off">
-                        <label class="btn btn-outline-danger" for="check-6">Bollywood</label>
-                    </div>
-                    <div class="m-2" style="float: left;">
-                        <input type="checkbox" class="btn-check mb-2" name="options-outlined" id="check-7"
-                            autocomplete="off">
-                        <label class="btn btn-outline-danger" for="check-7">Running</label>
-                    </div>
-                    <div class="m-2" style="float: left;">
-                        <input type="checkbox" class="btn-check mb-2" name="options-outlined" id="check-8"
-                            autocomplete="off">
-                        <label class="btn btn-outline-danger" for="check-8">Coffee</label>
-                    </div>
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-danger">Save changes</button>
-            </div>
+                 </div>
+                    <input type="hidden" value="" id="interests"/>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Save changes</button>
+                     </div>
             </form>
         </div>
     </div>
@@ -157,7 +121,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-4 mt-3">
-                        <button class="btn btn-light">
+                        <button class="btn btn-light" data-bs-dismiss="modal" onclick="lookingFor('Long-Term-Partner')">
                             <br>
                             <img height="40" src="{% static 'img/org/LTP.png' %}" alt="">
                             <br>
@@ -169,7 +133,7 @@
                         </button>
                     </div>
                     <div class="col-sm-4 mt-3">
-                        <button class="btn btn-light">
+                        <button class="btn btn-light" data-bs-dismiss="modal" onclick="lookingFor('Long-Term Open to Short')">
                             <br>
                             <img height="40" src="{% static 'img/org/LTOS.png' %}" alt="">
                             <br>
@@ -180,7 +144,7 @@
                         </button>
                     </div>
                     <div class="col-sm-4 mt-3">
-                        <button class="btn btn-light">
+                        <button class="btn btn-light"  data-bs-dismiss="modal" onclick="lookingFor('Short-Term Open to Long')">
                             <br>
                             <img height="40" src="{% static 'img/org/STOL.png' %}" alt="">
                             <br>
@@ -192,7 +156,7 @@
                         </button>
                     </div>
                     <div class="col-sm-4 mt-3">
-                        <button class="btn btn-light">
+                        <button class="btn btn-light" data-bs-dismiss="modal" onclick="lookingFor('Short-Term fun')">
                             <br>
                             <img height="40" src="{% static 'img/org/STF.png' %}" alt="">
                             <br>
@@ -203,7 +167,7 @@
                         </button>
                     </div>
                     <div class="col-sm-4 mt-3">
-                        <button class="btn btn-light">
+                        <button class="btn btn-light" data-bs-dismiss="modal" onclick="lookingFor('New Friends')">
                             <br>
                             <img height="40" src="{% static 'img/org/NF.png' %}" alt="">
                             <br>
@@ -214,11 +178,11 @@
                         </button>
                     </div>
                     <div class="col-sm-4 mt-3">
-                        <button class="btn btn-light">
+                        <button class="btn btn-light" data-bs-dismiss="modal" onclick="lookingFor('Still figuring it out')" >
                             <br>
                             <img height="40" src="{% static 'img/org/SFIO.png' %}" alt="">
                             <br>
-                            Still finguring
+                            Still figuring
                             <br>
                             it out
                             <br><br>
@@ -230,6 +194,82 @@
         </div>
     </div>
 
+    <script>
 
+        var gender;
+        var gop = 0;
+        var bdate;
+        var iig;
+        const interests = [];
+        var lf;
+        function lookingFor(foo){
+            lf = foo;
+            document.getElementById('selected_lf').innerHTML = `<button class="btn btn-danger" disabled id="${lf}"> ${lf} </button>`;
+            console.log(lf)
+        }
+
+        document.getElementById("birth-date").addEventListener("change", function() {
+            bdate =  document.getElementById("birth-date");
+        });
+
+        function getGender(g){
+            gender = g
+        }
+
+        function getInterestedGender(g){
+            iig = g
+            console.log(iig)
+        }
+
+        function setGOP(){
+            if (gop == 1){
+                gop = 0
+            }else{
+                gop = 1
+            }
+        };
+
+        function getPassions(passion){
+            if (interests.includes(passion)){
+                interests.pop(passion);
+                console.log(passion)
+                console.log("header" + document.getElementById(passion))
+                document.getElementById(passion).remove();
+            }else{
+                interests.push(passion);
+                document.getElementById('selected_passion').innerHTML += `<button class="btn btn-danger" disabled id="${passion}"> ${passion} </button>`;
+            }
+            
+            document.getElementById('interests').value = JSON.stringify(interests);
+        }
+
+
+
+        /*var settings = {
+            "url": "http://127.0.0.1:8000/profile/details",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            "data": {
+              "gender": gender,
+              "gop": gop,
+              "bdate": bdate,
+              "iig": iig,
+              "interests": interests,
+              "lf": lf,
+              csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            }
+          };
+          
+        function submitForm(){
+            console.log(gender)
+            $.ajax(settings).done(function (response) {
+              console.log(response.status);
+            });
+        }*/
+
+    </script>
 
     {% endblock content %}

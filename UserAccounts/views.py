@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
@@ -6,9 +6,9 @@ from django.conf import settings
 from django.contrib.auth.models import auth
 
 from UserAccounts.models import *
-
+from django.views.decorators.csrf import csrf_exempt
 import random
-
+from event.models import Passions
 
 
 
@@ -129,26 +129,29 @@ def org_profile(request):
     return render(request, 'org/profile.html')
 
 
-
+@csrf_exempt
 def ProfileDetails(request):
-
+    passions = Passions.objects.all()
     if request.method == "POST":
         rd = request.POST
+        print(rd)
         print("rd :: ", rd)
 
         if request.user.is_authenticated:
 
-            user = CustomUser.objects.filter(email=request.user.email).first()
+            user = CustomUser.objects.filter(email=request.user.email)
             user.update(gender=rd['gender'], gender_on_profile=rd['gop'], birthdate=rd['bdate'], 
                         interested_in_gender=rd['iig'], interests=rd['interests'].split(','), 
                         looking_for=rd['lf'])
             user.save()
+            
+            return JsonResponse({"status":True})
 
-            return redirect('/dashboard')
+            # return redirect('/dashboard')
 
         return HttpResponse("<h1>UnAuthorized</h1>")
 
-    return render(request, 'main/register.html')
+    return render(request, 'main/register.html',{'passions':passions})
 
 
 def Logout(request):
