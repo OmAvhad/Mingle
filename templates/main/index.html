@@ -358,6 +358,20 @@ footer{
         </div>
     </footer>
     <script>
-        
+        var settings = {
+            "url": "http://127.0.0.1:8000/event/get-event-list/",
+            "method": "GET",
+            "timeout": 0,
+            "headers": {
+              "Cookie": "csrftoken=XW0sN9LTamle7LxulrSxjWVBUScH8AN3zsm33JFul9pJSpG3WIwCpJbsA4sTHQXu"
+            },
+          };
+          
+          $.ajax(settings).done(function (response) {
+            let res = response.data
+            for (i in res){
+                console.log(res[i].id);
+            }
+          });
     </script>
 {% endblock content %}
