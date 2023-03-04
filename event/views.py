@@ -90,3 +90,6 @@ def getRegisterData(request):
     queryset = UserAppliedforEvents.objects.filter(event_id=event_id)
     data = UserAppliedforEventsSerializer(queryset,many=True).data
     return JsonResponse({"data":data})
+
+def create_event(request):
+    return render(request, 'events/create_event.html')
