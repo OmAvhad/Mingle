@@ -47,3 +47,6 @@ class Match(models.Model):
     user_1_id = models.IntegerField(null=True,blank=True)
     user_2_id = models.IntegerField(null=True,blank=True)
     approved = models.CharField(default='0')
+
+class Interest(models.Model):
+    value = models.CharField(max_length=100,null=True,blank=True)

@@ -17,10 +17,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path,include
+from UserAccounts.views import Index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('account/', include('UserAccounts.urls')),
+    path('', include('UserAccounts.urls')),
     path('event/', include('event.urls')),
 ]
 # add at the last
