@@ -27,7 +27,8 @@ SECRET_KEY = 'django-insecure-3ree9==pe8xaswv_+$m^-1j@$h41(#tskui)%=q^!=f3bkrwbn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app', '.now.sh', '127.0.0.1:8000']
+ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['.vercel.app', '.now.sh', '127.0.0.1:8000']
 
 # Application definition
 
@@ -38,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main',
+    'UserAccounts',
+
 ]
 
 MIDDLEWARE = [
@@ -87,6 +89,11 @@ DATABASES = {
 }
 
 
+# default user model
+AUTH_USER_MODEL = 'UserAccounts.CustomUser'
+
+
+
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -129,3 +136,20 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+
+# mail server configuration
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT='587'
+EMAIL_HOST_USER=os.environ.get("EMAIL")
+EMAIL_HOST_PASSWORD=os.environ.get("EMAIL_PASSWORD")
+EMAIL_USE_TLS=True
+
+
+
+
+
+
+
