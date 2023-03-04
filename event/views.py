@@ -151,7 +151,7 @@ def createConnection(request,event_id):
     mi = ftl.index(m)
 
     print("final :: ", qs[mi])
-
+    Match.objects.create(user_1_id=u_id,user_2_id=)        
 
 
 

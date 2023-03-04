@@ -9,7 +9,7 @@
 
 <section class="container">
     <header>ADD YOUR DETAILS</header>
-    <form >
+    <form action="/profile/details" method="POST">
         {% csrf_token %}
 
         <div class="mb-3 p-1">
@@ -19,7 +19,7 @@
 
         <div class="mb-3 p-1">
             <h5><label for="exampleFormControlInput1" class="form-label">Birthday</label></h5>
-            <input type="date" class="form-control" name="" id="birth-date" placeholder="">
+            <input type="date" class="form-control" name="bdate" id="birth-date" placeholder="">
         </div>
         <div class="mb-3 p-1">
             <h5><label for="exampleFormControlInput1" class="form-label">Gender</label><br></h5>
@@ -42,13 +42,13 @@
         <div class="mb-3 p-1">
             <h5><label for="exampleFormControlInput1" class="form-label">Show me:</label></h5>
 
-            <input type="radio" class="btn-check" name="options-outlined-2" id="danger-outlined-4" autocomplete="off" onclick="getInterestedGender('Male')">
+            <input type="radio" class="btn-check" name="iig" id="danger-outlined-4" autocomplete="off" onclick="getInterestedGender('Male')">
             <label class="btn btn-outline-danger" for="danger-outlined-4">Male</label>
 
-            <input type="radio" class="btn-check" name="options-outlined-2" id="danger-outlined-5" autocomplete="off" onclick="getInterestedGender('Female')">
+            <input type="radio" class="btn-check" name="iig" id="danger-outlined-5" autocomplete="off" onclick="getInterestedGender('Female')">
             <label class="btn btn-outline-danger" for="danger-outlined-5">Female</label>
 
-            <input type="radio" class="btn-check" name="options-outlined-2" id="danger-outlined-6" autocomplete="off" onclick="getInterestedGender('Others')">
+            <input type="radio" class="btn-check" name="iig" id="danger-outlined-6" autocomplete="off" onclick="getInterestedGender('Others')">
             <label class="btn btn-outline-danger" for="danger-outlined-6">Others</label>
         </div>
 
@@ -60,7 +60,7 @@
                 + Add Passion
             </button>
             <div class="m-2" id="selected_passion">
-                
+                <input name="interests" type="hidden" value="" id="interests"/>
             </div>
         </div>
 
@@ -71,9 +71,12 @@
                 + Add Relationship Intent
             </button>
             <div class="m-2" id="selected_lf">
+                <input name="lf" type="hidden" value="" id="lf"/>
             </div>
         </div>
-        <button class="cn" style="float: right;" onclick="submitForm()" type="button"><a class="text-white">Register</a></button>
+
+        <input class="cn" style="float: right;" type="submit">
+        <!-- <button class="cn" style="float: right;" onclick="submitForm()" type="button"><a class="text-white">Register</a></button> -->
     </form>
 </section>
 
@@ -97,7 +100,7 @@
                         {% endfor %}
                     </div>
                  </div>
-                    <input type="hidden" value="" id="interests"/>
+                    
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Save changes</button>
                      </div>
@@ -205,7 +208,7 @@
         function lookingFor(foo){
             lf = foo;
             document.getElementById('selected_lf').innerHTML = `<button class="btn btn-danger" disabled id="${lf}"> ${lf} </button>`;
-            console.log(lf)
+            document.getElementById('lf').value = foo;
         }
 
         document.getElementById("birth-date").addEventListener("change", function() {
@@ -235,7 +238,7 @@
                 console.log(passion)
                 console.log("header" + document.getElementById(passion))
                 document.getElementById(passion).remove();
-            }else{
+            }else{o
                 interests.push(passion);
                 document.getElementById('selected_passion').innerHTML += `<button class="btn btn-danger" disabled id="${passion}"> ${passion} </button>`;
             }
