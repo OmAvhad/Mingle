@@ -7,5 +7,14 @@ urlpatterns = [
     path('verify', VerifyOTP, name="verify-otp"),
     path('login', Login, name="login"),
     path('index', Index, name="index"),
+    path('event', event_detials, name="event_details"),
+    
+    # user
+    path('dashboard', user_dashboard, name="user_dash"),
+    path('profile', user_profile, name="user_profile"),
+    
+    # org
+    path('org/dashboard', org_dashboard, name="org_dash"),
+    path('org/profile', org_profile, name="org_profile"),
 ]
 
