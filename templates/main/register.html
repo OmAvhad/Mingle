@@ -1,0 +1,275 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link href="{% static 'css/temp/register.css' %}" rel="stylesheet" />
+
+
+
+
+<section class="container">
+    <header>ADD YOUR DETAILS</header>
+    <form >
+        {% csrf_token %}
+
+        <div class="mb-3 p-1">
+            <h5><label for="exampleFormControlInput1" class="form-label">Name</label></h5>
+            <input type="name" name="first_name" class="form-control" id="name" placeholder="{{request.user.first_name}}">
+        </div>
+
+        <div class="mb-3 p-1">
+            <h5><label for="exampleFormControlInput1" class="form-label">Birthday</label></h5>
+            <input type="date" class="form-control" name="" id="birth-date" placeholder="">
+        </div>
+        <div class="mb-3 p-1">
+            <h5><label for="exampleFormControlInput1" class="form-label">Gender</label><br></h5>
+
+            <input type="radio" class="btn-check" name="gender" id="danger-outlined-1" autocomplete="off"  value="1" onclick="getGender('Male')">
+            <label class="btn btn-outline-danger" for="danger-outlined-1">Male</label>
+
+            <input type="radio" class="btn-check" name="gender" id="danger-outlined-2" autocomplete="off" value="2" onclick="getGender('Female')">
+            <label class="btn btn-outline-danger" for="danger-outlined-2">Female</label>
+
+            <input type="radio" class="btn-check" name="gender" id="danger-outlined-3" autocomplete="off" value="3" onclick="getGender('Others')">
+            <label class="btn btn-outline-danger" for="danger-outlined-3">Others</label>
+            <br>
+            <div class="mb-3 mt-1 form-check text-secondary">
+                <input type="checkbox" class="form-check-input p-1" id="show_gender" onclick="setGOP()">
+                <label class="form-check-label label-danger" for="exampleCheck1">Show my gender on my profile</label>
+            </div>
+        </div>
+
+        <div class="mb-3 p-1">
+            <h5><label for="exampleFormControlInput1" class="form-label">Show me:</label></h5>
+
+            <input type="radio" class="btn-check" name="options-outlined-2" id="danger-outlined-4" autocomplete="off" onclick="getInterestedGender('Male')">
+            <label class="btn btn-outline-danger" for="danger-outlined-4">Male</label>
+
+            <input type="radio" class="btn-check" name="options-outlined-2" id="danger-outlined-5" autocomplete="off" onclick="getInterestedGender('Female')">
+            <label class="btn btn-outline-danger" for="danger-outlined-5">Female</label>
+
+            <input type="radio" class="btn-check" name="options-outlined-2" id="danger-outlined-6" autocomplete="off" onclick="getInterestedGender('Others')">
+            <label class="btn btn-outline-danger" for="danger-outlined-6">Others</label>
+        </div>
+
+        <!-- Button trigger modal -->
+        <div class="mb-3 p-1">
+            <h5><label for="exampleFormControlInput1" class="form-label">Passion</label></h5>
+            <button type="button" class="btn btn-outline-secondary text-center" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
+                + Add Passion
+            </button>
+            <div class="m-2" id="selected_passion">
+                
+            </div>
+        </div>
+
+        <div class="mb-3 p-1">
+            <h5><label for="exampleFormControlInput1" class="form-label">Looking for</label></h5>
+            <button type="button" class="btn btn-outline-secondary text-center" data-bs-toggle="modal"
+                data-bs-target="#looking">
+                + Add Relationship Intent
+            </button>
+            <div class="m-2" id="selected_lf">
+            </div>
+        </div>
+        <button class="cn" style="float: right;" onclick="submitForm()" type="button"><a class="text-white">Register</a></button>
+    </form>
+</section>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Passions</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="">
+                    <div class="m-2" style="float: left;">
+                        {% for p in passions%}
+                            <input type="checkbox" class="btn-check mb-2" name="options-outlined" id="check-{{p.id}}"
+                                autocomplete="off" onclick="getPassions('{{p.value}}')">
+                            <label class="btn btn-outline-danger" for="check-{{p.id}}">{{p.value}}</label>
+                        {% endfor %}
+                    </div>
+                 </div>
+                    <input type="hidden" value="" id="interests"/>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Save changes</button>
+                     </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- looking Modal  -->
+<div class="modal fade" id="looking" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="m-3 text-center">
+                <button style="float: right;" type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+                <h3 class="modal-title text-dark" id="exampleModalLabel">Right now I'm looking for...</h3>
+                <div id="emailHelp" style="font-size: medium;" class="form-text">Increase compatibility by sharing
+                    yours!</div>
+
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-4 mt-3">
+                        <button class="btn btn-light" data-bs-dismiss="modal" onclick="lookingFor('Long-Term-Partner')">
+                            <br>
+                            <img height="40" src="{% static 'img/org/LTP.png' %}" alt="">
+                            <br>
+                            Long-Term
+                            <br>
+                            Partner
+                            <br>
+                            <br>
+                        </button>
+                    </div>
+                    <div class="col-sm-4 mt-3">
+                        <button class="btn btn-light" data-bs-dismiss="modal" onclick="lookingFor('Long-Term Open to Short')">
+                            <br>
+                            <img height="40" src="{% static 'img/org/LTOS.png' %}" alt="">
+                            <br>
+                            Long-Term <br> Open to
+                            <br>
+                            Short
+                            <br>
+                        </button>
+                    </div>
+                    <div class="col-sm-4 mt-3">
+                        <button class="btn btn-light"  data-bs-dismiss="modal" onclick="lookingFor('Short-Term Open to Long')">
+                            <br>
+                            <img height="40" src="{% static 'img/org/STOL.png' %}" alt="">
+                            <br>
+                            Short-Term
+                            <br>
+                            open to
+                            <br>
+                            long <br>
+                        </button>
+                    </div>
+                    <div class="col-sm-4 mt-3">
+                        <button class="btn btn-light" data-bs-dismiss="modal" onclick="lookingFor('Short-Term fun')">
+                            <br>
+                            <img height="40" src="{% static 'img/org/STF.png' %}" alt="">
+                            <br>
+                            Short-Term
+                            <br>
+                            fun
+                            <br><br>
+                        </button>
+                    </div>
+                    <div class="col-sm-4 mt-3">
+                        <button class="btn btn-light" data-bs-dismiss="modal" onclick="lookingFor('New Friends')">
+                            <br>
+                            <img height="40" src="{% static 'img/org/NF.png' %}" alt="">
+                            <br>
+                            New Friends
+                            <br>
+                            
+                            <br><br>
+                        </button>
+                    </div>
+                    <div class="col-sm-4 mt-3">
+                        <button class="btn btn-light" data-bs-dismiss="modal" onclick="lookingFor('Still figuring it out')" >
+                            <br>
+                            <img height="40" src="{% static 'img/org/SFIO.png' %}" alt="">
+                            <br>
+                            Still figuring
+                            <br>
+                            it out
+                            <br><br>
+                        </button>
+
+                        <br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        var gender;
+        var gop = 0;
+        var bdate;
+        var iig;
+        const interests = [];
+        var lf;
+        function lookingFor(foo){
+            lf = foo;
+            document.getElementById('selected_lf').innerHTML = `<button class="btn btn-danger" disabled id="${lf}"> ${lf} </button>`;
+            console.log(lf)
+        }
+
+        document.getElementById("birth-date").addEventListener("change", function() {
+            bdate =  document.getElementById("birth-date");
+        });
+
+        function getGender(g){
+            gender = g
+        }
+
+        function getInterestedGender(g){
+            iig = g
+            console.log(iig)
+        }
+
+        function setGOP(){
+            if (gop == 1){
+                gop = 0
+            }else{
+                gop = 1
+            }
+        };
+
+        function getPassions(passion){
+            if (interests.includes(passion)){
+                interests.pop(passion);
+                console.log(passion)
+                console.log("header" + document.getElementById(passion))
+                document.getElementById(passion).remove();
+            }else{
+                interests.push(passion);
+                document.getElementById('selected_passion').innerHTML += `<button class="btn btn-danger" disabled id="${passion}"> ${passion} </button>`;
+            }
+            
+            document.getElementById('interests').value = JSON.stringify(interests);
+        }
+
+
+
+        /*var settings = {
+            "url": "http://127.0.0.1:8000/profile/details",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            "data": {
+              "gender": gender,
+              "gop": gop,
+              "bdate": bdate,
+              "iig": iig,
+              "interests": interests,
+              "lf": lf,
+              csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            }
+          };
+          
+        function submitForm(){
+            console.log(gender)
+            $.ajax(settings).done(function (response) {
+              console.log(response.status);
+            });
+        }*/
+
+    </script>
+
+    {% endblock content %}
