@@ -1,22 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-<body>
-    
-    <form action="/account/login" method="POST">
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="{% static 'css/temp/login.css' %}" rel="stylesheet" />
 
-        {% csrf_token %}
 
-        <input type="text" name="email" id="email" placeholder="Email"> <br> <br>
-        <input type="text" name="password" id="password" placeholder="Password"> <br> <br>
-        <input type="submit">
+    <div class="container">
+      <div class="flex flex-1">
+        <img src="{% static 'img/temp/login_mingle.png' %}" alt="signupImg" />
+      </div>
+      <div class="flex flex-2">
+        <div class="back-arrow">
+          <a href="/" class="nav-link active">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 22 22"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.0469 19.9062C13.5156 19.4375 13.4688 18.7344 13.0469 18.2656L7.375 12.875H20.875C21.4844 12.875 22 12.4062 22 11.75V10.25C22 9.64062 21.4844 9.125 20.875 9.125H7.375L13.0469 3.78125C13.4688 3.3125 13.5156 2.60938 13.0469 2.14062L12.0156 1.10938C11.5938 0.6875 10.8438 0.6875 10.4219 1.10938L1.32812 10.25C0.859375 10.6719 0.859375 11.375 1.32812 11.7969L10.4219 20.9375C10.8438 21.3594 11.5469 21.3594 12.0156 20.9375L13.0469 19.9062Z"
+              fill="black"
+            />
+          </svg>
+        </a>
+        </div>
+        
 
-    </form>
 
-</body>
-</html>
+
+        <div class="signup-form">
+          <div class="signup-title">Login to Mingle</div>
+          <div class="redirect-register">Haven't registered yet? <a href="/#section2">Register Now</a></div>
+<form action="" method="POST">
+          <div class="signup-detail">
+            {% csrf_token %}
+            <div class="signup-detail-text">Username</div>
+            <input type="text" name="email" id="email" class="signup-detail-input" />
+            <div class="signup-detail-text">Password</div>
+            <input type="password" name="password" id="password" class="signup-detail-input" />
+          </div>
+          <button type="Submit" class="signup-btn">Login</button>
+        </form>
+        </div>
+      </div>
+    </div>
+    {% endblock content %}
