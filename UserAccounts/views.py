@@ -46,7 +46,7 @@ def Register(request):
         if not se:
             return HttpResponse("Something went wrong!")
         
-        new_user = CustomUser.objects.create_user(username=rd['username'], password=rd['password'], email=rd['email'],
+        new_user = CustomUser.objects.create_user(username=rd['email'], password=rd['password'], email=rd['email'],
                                                   first_name=rd['first_name'], last_name=rd['last_name'])
         new_user.save()
 
@@ -55,9 +55,9 @@ def Register(request):
             "message": ""
         }
 
-        return render(request, 'temp/verify_otp.html', data)
+        return render(request, 'main/verify_otp.html', data)
 
-    return render(request, 'temp/register.html')
+    return render(request, 'main/index.html')
 
 
 def VerifyOTP(request):
@@ -98,8 +98,21 @@ def Login(request):
             return HttpResponse(f"<h1>Login Successful {user.first_name} !</h1>")
 
 
-    return render(request, 'temp/login.html')
+    return render(request, 'main/login.html')
 
 
 def Index(request):
     return render(request, 'main/index.html')
+
+
+
+
+
+
+
+
+
+
+
+
+

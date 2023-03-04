@@ -310,37 +310,41 @@ footer{
             <div class="image-holder">
             <img src="{% static 'img/main/register_date.png' %}" alt="image">
             </div>
-            <form action="">
+            <form action="/register" method="POST">
+                
+            {% csrf_token %}
+
             <h3>Registration Form</h3>
             <div class="form-group">
-            <input type="text" placeholder="First Name" class="form-control">
-            <input type="text" placeholder="Last Name" class="form-control">
+            <input name="first_name" type="text" placeholder="First Name" class="form-control">
+            <input name="last_name" type="text" placeholder="Last Name" class="form-control">
             </div>
-            <div class="form-wrapper">
+            <!-- <div class="form-wrapper">
             <input type="text" placeholder="Username" class="form-control">
              
-            </div>
+            </div> -->
             <div class="form-wrapper">
-            <input type="text" placeholder="Email Address" class="form-control">
+            <input name="email" type="text" placeholder="Email Address" class="form-control">
              
             </div>
-            <div class="form-wrapper">
+            <!-- <div class="form-wrapper">
             <select name="" id="" class="form-control">
             <option value="" disabled selected>Gender</option>
             <option value="male">Male</option>
             <option value="femal">Female</option>
             <option value="other">Other</option>
             </select>
-            </div>
+            </div> -->
             <div class="form-wrapper">
-            <input type="password" placeholder="Password" class="form-control">
+            <input name="password" type="password" placeholder="Password" class="form-control">
              
             </div>
             <div class="form-wrapper">
             <input type="password" placeholder="Confirm Password" class="form-control">
              
             </div>
-            <button class="cn"><a class="text-white" href="#section2">Register</a></button>
+            <input class="cn" type="submit">
+            <!-- <button class="cn"><a class="text-white" href="#section2">Register</a></button> -->
             </form>
             </div>
             </div>
