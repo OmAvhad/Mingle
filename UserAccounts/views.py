@@ -101,3 +101,5 @@ def Login(request):
     return render(request, 'temp/login.html')
 
 
+def Index(request):
+    return render(request, 'main/index.html')
