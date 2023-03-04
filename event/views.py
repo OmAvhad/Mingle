@@ -32,7 +32,7 @@ def addEvent(request):
 
 @api_view(['GET'])
 
-def getEventList(request):
+def getEventListUser(request):
     
     user_id = request.query_params.get('id')
     queryset = Events.objects.filter(user=user_id)
@@ -51,16 +51,21 @@ def getEventListUser(request):
 @api_view(['POST'])
 def addRating(request):
     data = request.data 
-    user = CustomUser.objects.filter(user=request.user)
-
-    if user.user_type=="user":
-        serializer = EventSerializer(data=request)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse({"msg":"New Event is Added"})
+    user_id = request.query_params.get('user_id')
+    data['event'] = Events.objects.filter(id = request.data.get('event_id'))
+    user = CustomUser.objects.filter(id=user_id).last()
+    if Rate.objects.filter(description=data.get('description'),event=data['event']).exists():
+        return JsonResponse({"msg":"Rating Already exists. "})
+    else:
+        if user.user_type=="user":
+            serializer = RateSerializer(data=data)
+            if serializer.is_valid():
+                serializer.save()
+                return JsonResponse({"msg":"New Rating is Added"})
+            else:
+                return JsonResponse({"msg":"User Does not Match"})
         else:
-            return JsonResponse({"msg":"User Does not Match"})
-
+            return JsonResponse({"msg":"Invalid User"})
 ##Get Particular Event
 @api_view(['GET'])
 def getEvent(request):
@@ -85,6 +90,10 @@ def registerForEvent(request):
         event = Events.objects.filter(id=event_id).last()
         user = CustomUser.objects.filter(id=user_id).last()
         print("user:",user)
+
+    #Creating Connection
+        createConnection(request)
+
         UserAppliedforEvents.objects.create(user=user,event=event)
         return JsonResponse({"message":"Registeration is Done"})
 
@@ -94,3 +103,11 @@ def getRegisterData(request):
     queryset = UserAppliedforEvents.objects.filter(event_id=event_id)
     data = UserAppliedforEventsSerializer(queryset,many=True).data
     return JsonResponse({"data":data})
+
+
+def createConnection(request):
+
+    CustomUser.objects.filter(user)
+    
+
+
