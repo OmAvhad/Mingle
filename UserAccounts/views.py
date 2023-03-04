@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
@@ -39,25 +39,31 @@ def sendOTPEmail(rd):
 
 def Register(request):
 
-    if request.method == "POST":
+    try:
 
-        rd = request.POST
-        se = sendOTPEmail(rd)
-        if not se:
-            return HttpResponse("Something went wrong!")
-        
-        new_user = CustomUser.objects.create_user(username=rd['email'], password=rd['password'], email=rd['email'],
-                                                  first_name=rd['first_name'], last_name=rd['last_name'])
-        new_user.save()
+        if request.method == "POST":
 
-        data = {
-            "email": rd['email'],
-            "message": ""
-        }
+            rd = request.POST
+            se = sendOTPEmail(rd)
+            if not se:
+                return HttpResponse("Something went wrong!")
+            
+            new_user = CustomUser.objects.create_user(username=rd['email'], password=rd['password'], email=rd['email'],
+                                                    first_name=rd['first_name'], last_name=rd['last_name'])
+            new_user.save()
 
-        return render(request, 'main/verify_otp.html', data)
+            data = {
+                "email": rd['email'],
+                "message": ""
+            }
 
-    return render(request, 'main/index.html')
+            return render(request, 'main/verify_otp.html', data)
+
+        return render(request, 'main/index.html')
+
+    except Exception as err:
+        print("Error :: ", err)
+        return HttpResponse("<h1>Something went wrong!</h1>")
 
 
 def VerifyOTP(request):
@@ -73,7 +79,8 @@ def VerifyOTP(request):
     if otp_obj is not None:
         otp_obj.delete()
 
-        return HttpResponse("Email Verified Successfully!!!")
+        return redirect("/profile/details")
+        # return HttpResponse("Email Verified Successfully!!!")
     
     data = {
         "email": rd['email'],
@@ -95,7 +102,8 @@ def Login(request):
         if user is not None:
             auth.login(request, user)
 
-            return HttpResponse(f"<h1>Login Successful {user.first_name} !</h1>")
+            return redirect('/dashboard')
+            # return HttpResponse(f"<h1>Login Successful {user.first_name} !</h1>")
 
 
     return render(request, 'main/login.html')
@@ -119,3 +127,35 @@ def org_dashboard(request):
 
 def org_profile(request):
     return render(request, 'org/profile.html')
+
+
+
+def ProfileDetails(request):
+
+    if request.method == "POST":
+        rd = request.POST
+        print("rd :: ", rd)
+
+        if request.user.is_authenticated:
+
+            user = CustomUser.objects.filter(email=request.user.email).first()
+            user.update(gender=rd['gender'], gender_on_profile=rd['gop'], birthdate=rd['bdate'], 
+                        interested_in_gender=rd['iig'], interests=rd['interests'].split(','), 
+                        looking_for=rd['lf'])
+            user.save()
+
+            return redirect('/dashboard')
+
+        return HttpResponse("<h1>UnAuthorized</h1>")
+
+    return render(request, 'main/register.html')
+
+
+def Logout(request):
+
+    auth.logout(request)
+
+    return redirect('/')
+
+
+
