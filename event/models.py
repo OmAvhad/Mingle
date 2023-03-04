@@ -10,6 +10,7 @@ class Events(models.Model):
     date = models.DateTimeField(null=True,blank=True)
     registeration_start_date = models.DateTimeField(null=True,blank=True)
     registeration_end_date = models.DateTimeField(null=True,blank=True)
+    cover_image = models.CharField(max_length=256, blank=True, null=True)
     
     created_at = models.DateTimeField(auto_now=True,null=True,blank=True)
     updated_at = models.DateTimeField(auto_now_add=False,null=True,blank=True)
