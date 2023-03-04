@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Index, name="index"),
     path('account/', include('UserAccounts.urls')),
+    path('event/', include('event.urls')),
 ]
 # add at the last
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
