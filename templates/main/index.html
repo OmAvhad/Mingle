@@ -4,6 +4,7 @@
 {% block content %}
     <style>
 
+
 .wrapper .cn {
             width: 160px;
             height: 40px;
@@ -204,16 +205,46 @@
   height: 600px;
 }
 
-footer{
-    margin-top: 0;
-    background-color: #fe5b7e;
-    text-align: center;
-}
-.footer-text{
-    color: #ffffff;
 
-    padding: 20px 0px;
-}
+.btn {
+    background-color: #fe5b7e;
+    color: #fff;
+  }
+
+  .card {
+    height: 321px;
+    background-color: #f8e5eb;
+  }
+
+  .participants {
+    height: 100;
+  }
+
+  #banner {
+    height: 318px;
+    width: 100%;
+    background-image: url("{% static 'img/user/mingle_dashboard_banner.png' %}");
+    background-color: #cccccc;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .link_btn {
+    background-color: #fe5b7e;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
     </style>
 
 
@@ -346,18 +377,82 @@ footer{
             </div>
     </div>
 
-<div id="upcoming_events">
+<div id="upcoming_events" class="m-4">
     <center><h3>Upcoming Events</h3></center>
 </div>
-<br><br><br>
 
-
-
-    <footer>
-        <div class="footer-text">
-            2023 © Mingle
+<div class="container">
+    <div class="main-body">
+  
+  <div id="open_events">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <div style="float: right;">
+              <a href=""><button class="link_btn"><i data-feather="link"></i></button></a>
+              <a href=""><button class="link_btn"><i data-feather="twitter"></i></button></a>
+            </div>
+  
+            <h3 class="card-title">Speed Dating <br>
+              <spam class="card-subtitle form-text" style="font-size: small;">Blind Dating</spam>
+            </h3>
+            <div class="m-4">
+              <img style="height: 130px;" src="{% static 'img/user/event_1.png' %}" alt="">
+  
+              <button type="button" class="btn btn-danger" style="float:right">
+                <span class="badge text-danger text-bg-light"> + 100</span>
+                Peoples
+              </button>
+            </div>
+            <div class="apply_event">
+              <span class="badge bg-secondary" style="float: left; font-size: 20px;">OFFLINE</span>
+              <a href="#" class="btn" style="float:right">Apply Now</a>
+            </div>
+          </div>
         </div>
-    </footer>
+      </div>
+  
+      <!-- card  -->
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <div style="float: right;">
+              <a href=""><button class="link_btn"><i data-feather="link"></i></button></a>
+              <a href=""><button class="link_btn"><i data-feather="twitter"></i></button></a>
+            </div>
+  
+            <h3 class="card-title">Speed Dating <br>
+              <spam class="card-subtitle form-text" style="font-size: small;">Blind Dating</spam>
+            </h3>
+            <div class="m-4">
+              <img style="height: 130px;" src="{% static 'img/user/event_1.png' %}" alt="">
+  
+              <button type="button" class="btn btn-danger" style="float:right">
+                <span class="badge text-danger text-bg-light"> + 100</span>
+                Peoples
+              </button>
+            </div>
+            <div class="apply_event">
+              <span class="badge bg-secondary" style="float: left; font-size: 20px;">OFFLINE</span>
+              <a href="#" class="btn" style="float:right">Apply Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+  
+  
+  </div>
+  </div>
+  </div>
+  
+
+
+<br>
+
     <script>
         var settings = {
             "url": "http://127.0.0.1:8000/event/get-event-list/",

@@ -10,6 +10,7 @@ class Events(models.Model):
     date = models.DateTimeField(null=True,blank=True)
     registeration_start_date = models.DateTimeField(null=True,blank=True)
     registeration_end_date = models.DateTimeField(null=True,blank=True)
+    cover_image = models.CharField(max_length=256, blank=True, null=True)
     
     created_at = models.DateTimeField(auto_now=True,null=True,blank=True)
     updated_at = models.DateTimeField(auto_now_add=False,null=True,blank=True)
@@ -29,8 +30,9 @@ class OrganizationDetail(models.Model):
 
 class Icebreakers(models.Model):
     value = models.CharField(max_length=200,null=True,blank=True)
-    created_at = models.DateTimeField(null=True,blank=True,auto_now=True)
-    updated_at = models.DateTimeField(null=True,blank=True,auto_now_add=False)
+    created_at = models.DateTimeField(auto_now=True,null=True,blank=True)
+    updated_at = models.DateTimeField(auto_now_add=False,null=True,blank=True)
+
 
 
 class UserAppliedforEvents(models.Model):

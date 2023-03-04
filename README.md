@@ -1,5 +1,6 @@
 <div align="center">
-  <h1> Mingle </h1>
+  <h1> <img height="100" width="250" alt="Mingle_Logo" src="https://user-images.githubusercontent.com/71089075/222932602-39a29a61-7f71-4d48-a120-0bf37d851976.png"> </h1>
+
   <h3> Spread Love </h3>
   Built with ❤️ for Clash-of-Codes hackathon.
 </div>
