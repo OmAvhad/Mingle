@@ -18,11 +18,7 @@ class UserAdminConfig(UserAdmin):
     list_display = ('id','username', 'user_type', 'first_name', 'last_name')
     fieldsets = (
         ('User Type', {'fields': ('user_type',)}),
-<<<<<<< HEAD
-        ("Details", {'fields': ('email', 'username', 'password', 'interests')}),
-=======
         ("Details", {'fields': ('email', 'username', 'password', 'first_name', 'last_name' )}),
->>>>>>> efa7edc20557cf0b706ec391f150db5783cee3a7
         
         ('Permissions', {'fields': ('is_active', 'is_staff', 'user_permissions')}),
         # ('Personal', {'fields': ('about',)}),
