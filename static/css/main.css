@@ -1,0 +1,56 @@
+.content {
+    width: 1200px;
+    height: auto;
+    margin: auto;
+    color: rgb(0, 0, 0);
+    position: relative;
+}
+
+.content .par {
+    padding-left: 20px;
+    padding-bottom: 25px;
+    font-family: Arial;
+    letter-spacing: 1.2px;
+    line-height: 30px;
+}
+
+.content h1 {
+    font-family: 'Times New Roman';
+    font-size: 50px;
+    padding-left: 20px;
+    margin-top: 9%;
+    letter-spacing: 2px;
+}
+
+.content .cn {
+    width: 160px;
+    height: 40px;
+    background: #ff7200;
+    border: none;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .4s ease;
+
+}
+
+.content .cn a {
+    text-decoration: none;
+    color: #000;
+    transition: .3s ease;
+}
+
+.cn:hover {
+    background-color: #5A6EA5;
+}
+
+.welcome_img {
+    position: absolute;
+    top: -80px;
+    left: 770px;
+    transform: translate(0%, -5%);
+    border-radius: 10px;
+    padding: 25px;
+}

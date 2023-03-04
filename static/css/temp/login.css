@@ -1,0 +1,61 @@
+body{
+    padding: 0%;
+    margin: 0%;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+}
+img{
+    width: 50vw;
+    height: 80vh;
+    margin-top: 15%;
+}
+
+.container{
+    display: flex;
+    flex: 1;
+    
+}
+
+.back-arrow{
+    margin: 50px 0 50px 70px;
+}
+.signup-form{
+    margin: 50% 65%;
+    width: 100%;
+}
+.signup-title{
+    font-size: xx-large;
+    font-weight: 700;
+    margin: 20px 0 10px 0;
+}
+.redirect-register{
+    color: #999999;
+    margin: 0 0 20px 0;
+    font-weight: 700;
+}
+.redirect-register a{
+    color: #fe5b7e;
+    text-decoration: none;
+}
+.signup-detail-text{
+    color: #999999;
+    margin: 5px;
+    font-weight: 700;
+}
+.signup-detail-input{
+    margin: 5px;
+    border: 1px solid #999999;
+    border-radius: 5px;
+    width: 300px;
+    height: 30px;
+    padding: 0 10px;
+}
+.signup-btn{
+    padding: 10px 30px;
+    background-color: #fe5b7e;
+    border-radius: 5px;
+    border: none;
+    color: #ffffff;
+    font-weight: 100;
+    margin: 5px 80px;
+}
