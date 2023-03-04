@@ -24,6 +24,7 @@ class OrganizationDetail(models.Model):
     user = models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True,blank=True)
     organization_address = models.TextField(null=True,blank=True)
     organization_logo = models.FileField(upload_to='logo')
+    social_link = models.URLField(max_length=1024, blank=True, null=True)
     
 
 class Icebreakers(models.Model):
