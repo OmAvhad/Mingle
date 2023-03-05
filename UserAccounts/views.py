@@ -79,7 +79,13 @@ def VerifyOTP(request):
     if otp_obj is not None:
         otp_obj.delete()
 
-        return redirect("/profile/details")
+        user = CustomUser.objects.get(email=rd['email'])
+        print("user :: ", user)
+        if user is not None:
+            auth.login(request, user)
+            return redirect("/profile/details")
+        
+        
         # return HttpResponse("Email Verified Successfully!!!")
     
     data = {
@@ -88,6 +94,7 @@ def VerifyOTP(request):
     }
 
     return render(request, 'temp/verify_otp.html', data)
+    
 
 
 
@@ -145,10 +152,11 @@ def ProfileDetails(request):
             user = CustomUser.objects.filter(email=request.user.email)
             # itr = str(rd['interests']).replace('"', '').replace('[', '').replace(']', '').split(',')
             itr=""
-            user.update(gender=rd['gender'], gender_on_profile=rd['gop'], birthdate=rd['bdate'], 
-                        interested_in_gender=rd['iig'], interests=itr, 
+            gop = True if rd['gop'] == "true" else False
+
+            user.update(gender=rd['gender'], gender_on_profile=gop, birthdate=rd['bdate'], 
+                        interested_in_gender=rd['iig'], interests=[itr],
                         looking_for=rd['lf'])
-            user.save()
             
             # return JsonResponse({"status":True})
 
