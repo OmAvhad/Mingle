@@ -1,87 +1,547 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+  footer {
+    margin-top: 0;
+    background-color: #fe5b7e;
+    text-align: center;
+  }
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title></title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="" />
-    <style>
-      .nav2 {
-        background-color: pink;
-      }
-    </style>
-    <link
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-      rel="stylesheet"
-    />
-  </head>
-  <body style="margin: auto">
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg nav2 static-top">
-      <div class="container">
-        <a class="navbar-brand" href="#"> Mingle </a>
-        <button type="button" class="btn btn-light">
-          <a class="text-dark" href=""> User </a>
+  .footer-text {
+    color: #ffffff;
+
+    padding: 20px 0px;
+  }
+
+
+  .wrapper .cn {
+    width: 160px;
+    height: 40px;
+    background: #fe5b7e;
+    border: none;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .4s ease;
+
+  }
+
+  .wrapper a {
+    text-decoration: none;
+    color: #000;
+    transition: .3s ease;
+  }
+
+  .cn:hover {
+    background-color: #eb2651;
+  }
+
+  .wrapper input,
+  textarea,
+  select,
+  button {
+    font-family: arial;
+    color: #333;
+    font-size: 14px;
+  }
+
+  .wrapper p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  ul {
+    margin: 0;
+  }
+
+  .wrapper img {
+    max-width: 100%;
+  }
+
+  .wrapper ul {
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+
+  .wrapper a:hover {
+    text-decoration: none;
+  }
+
+  .wrapper :focus {
+    outline: none;
+  }
+
+  .wrapper {
+    min-height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+  }
+
+  .inner {
+    padding: 5px;
+    background: #fff;
+    max-width: 100%;
+    margin: auto;
+    display: flex;
+  }
+
+  .inner .image-holder {
+    width: 50%;
+  }
+
+  .inner form {
+    width: 50%;
+    padding-top: 36px;
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .inner h3 {
+    text-transform: uppercase;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .wrapper .form-group {
+    display: flex;
+  }
+
+  .form-group input {
+    width: 50%;
+  }
+
+  .form-group input:first-child {
+    margin-right: 25px;
+  }
+
+  .wrapper .form-wrapper {
+    position: relative;
+  }
+
+  .form-wrapper i {
+    position: absolute;
+    bottom: 9px;
+    right: 0;
+  }
+
+  .wrapper .form-control {
+    border: 1px solid #333;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    display: block;
+    width: 100%;
+    height: 30px;
+    padding: 0;
+    margin-bottom: 25px;
+  }
+
+  .wrapper .form-control::-webkit-input-placeholder {
+    font-size: 14px;
+    color: gray;
+    font-family: arial;
+  }
+
+  .wrapper select {
+    font-size: 14px;
+    font-family: arial;
+    cursor: pointer;
+    padding-left: 20px;
+    color: gray;
+  }
+
+  .wrapper select option[value=""][disabled] {
+    display: none;
+  }
+
+
+  .wrapper button:hover {
+    background: or;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  .atv .btn {
+    color: white;
+    background-color: #fe5b7e;
+  }
+
+  .content {
+    width: 1200px;
+    height: auto;
+    margin: auto;
+    color: rgb(0, 0, 0);
+    position: relative;
+  }
+
+  .content .par {
+    padding-left: 20px;
+    padding-bottom: 25px;
+    font-family: Arial;
+    letter-spacing: 1.2px;
+    line-height: 30px;
+  }
+
+  .content h1 {
+    font-family: 'Times New Roman';
+    font-size: 50px;
+    padding-left: 20px;
+    margin-top: 9%;
+    letter-spacing: 2px;
+  }
+
+  .content .cn {
+    width: 160px;
+    height: 40px;
+    background: #fe5b7e;
+    border: none;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .4s ease;
+
+  }
+
+  .content .cn a {
+    text-decoration: none;
+    color: #000;
+    transition: .3s ease;
+  }
+
+  .cn:hover {
+    background-color: #eb2651;
+  }
+
+  .welcome_img {
+    position: absolute;
+    top: -80px;
+    left: 600px;
+    transform: translate(0%, -5%);
+    border-radius: 10px;
+    padding: 25px;
+  }
+
+
+  /* scrolling window  */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  #section2 {
+    height: 600px;
+  }
+
+
+  .btn {
+    background-color: #fe5b7e;
+    color: #fff;
+  }
+
+  .card {
+    height: 321px;
+    background-color: #f8e5eb;
+  }
+
+  .participants {
+    height: 100;
+  }
+
+  #banner {
+    height: 318px;
+    width: 100%;
+    background-image: url("{% static 'img/user/mingle_dashboard_banner.png' %}");
+    background-color: #cccccc;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .link_btn {
+    background-color: #fe5b7e;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+
+  footer {
+    margin-top: 0;
+    background-color: #fe5b7e;
+    text-align: center;
+  }
+
+  .footer-text {
+    color: #ffffff;
+
+    padding: 20px 0px;
+  }
+</style>
+
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" style="font-size: 0px" href="/"><b>
+        <img height="40" src="{% static 'img/main/Mingle_Logo.png' %}" alt="">
+      </b></a> &nbsp &nbsp
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center" style="float: left;">
+
+        <li class="nav-item">
+          <a class="nav-link" href="#overview"><button type="button" class="btn">Overview</button></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#about_event"><button type="button" class="btn">About Event</button></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#deadline"><button type="button" class="btn">Deadline</button></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#more"><button type="button" class="btn">More</button></a>
+        </li>
+
+
+
+      </ul>
+
+
+
+      <a href="{% url 'UserAccounts:login' %}" class="nav-link active">
+        <button class="btn btn-outline-danger" type="submit"><i data-feather="user"></i>
+          Login
         </button>
-      </div>
-    </nav>
+      </a>
+    </div>
+  </div>
+</nav>
 
-    <!-- Navigation -->
-    <div class="navbar navbar-expand-lg">
-      <div class="container">
-        <div class="d-flex">
-          <div class="form-outline">
-            <input type="search" id="form1" class="form-control" />
-            <label class="form-label" for="form1">Search</label>
+
+
+
+
+
+
+<!-- Likes -->
+<hr class="text-danger">
+<div class="likes text-danger" style="padding: 10px;">
+  <center>
+    <h1><b> Speed Dating</b></h1>
+  </center>
+
+</div>
+<img height="600px" src="https://www.originaldating.com/media/26894/ipswich-og-image-hp.png"
+  class="rounded mx-auto d-block p-5" alt="...">
+
+<div id="about_event" class="likes text-danger" style="background-color: #f8e5eb; padding: 10px;">
+  <br>
+  <center>
+    <h3>About Event</h3>
+    <div style="width: 600px;" class="org_details m-5">
+      It is impossible to judge someone within a couple of seconds, based on few pictures and a cheesy bio, like in the
+      case of 99% of meeting and dating apps. Step out of the rut of mainstream virtual communication on social media
+      networks and engage in real connections with BLIND MEET. Our app is a safe space for networking and meeting new
+      people near your vicinity, without having to shift around much of your time. This app is mighty useful for people
+      who battle social awkwardness on a daily basis and helps experience the joy of spending quality time with a person
+      who shares similar tastes and quirks as yourself. Keep up to speed by networking, 21st century style, with BLIND
+      MEET.
+    </div>
+  </center>
+
+</div>
+<center>
+  <div id="deadline" class="m-4 w-50" style="width: 18rem;">
+    <div class="card-body">
+      <h3 class="card-title">Deadline
+        <hr class="text-danger">
+      </h3>
+      <p class="form-text">
+      <h4>
+        <spam style="font-size: small;" class="form-text"> RUNS FROM:</spam> <br>
+        Feb 21, 2023
+      </h4>
+
+      </p>
+      <p class="form-text">
+      <h4>
+        <spam style="font-size: small;" class="form-text"> ENDS IN:</spam> <br>
+        MARCH 1, 2023
+      </h4>
+
+      </p>
+      <p class="form-text">
+      <h4>
+        <spam style="font-size: small;" class="form-text"> HAPPENING:</spam> <br>
+        OFFLINE
+      </h4>
+      <hr class="text-danger">
+      </p>
+    </div>
+  </div>
+</center>
+
+<!-- More Event  -->
+
+<div id="more" class="m-4">
+  <center>
+    <h3><b> More Events</b></h3>
+  </center>
+</div>
+
+
+<div class="container">
+  <div class="main-body">
+
+    <div id="open_events">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <div style="float: right;">
+                <a href=""><button class="link_btn"><i data-feather="link"></i></button></a>
+                <a href=""><button class="link_btn"><i data-feather="twitter"></i></button></a>
+              </div>
+
+              <h3 class="card-title">Speed Dating <br>
+                <spam class="card-subtitle form-text" style="font-size: small;">Blind Dating</spam>
+              </h3>
+              <div class="m-4">
+                <img style="height: 130px;" src="{% static 'img/user/event_1.png' %}" alt="">
+
+                <button type="button" class="btn btn-danger" style="float:right">
+                  <span class="badge text-danger text-bg-light"> + 100</span>
+                  Peoples
+                </button>
+              </div>
+              <div class="apply_event">
+                <span class="badge bg-secondary" style="float: left; font-size: 20px;">OFFLINE</span>
+                <a href="#" class="btn" style="float:right">Apply Now</a>
+              </div>
+            </div>
           </div>
-          <button type="button" class="btn btn-primary">
-            <i class="fas fa-search"></i>
-          </button>
+        </div>
+
+        <!-- card  -->
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <div style="float: right;">
+                <a href=""><button class="link_btn"><i data-feather="link"></i></button></a>
+                <a href=""><button class="link_btn"><i data-feather="twitter"></i></button></a>
+              </div>
+
+              <h3 class="card-title">Speed Dating <br>
+                <spam class="card-subtitle form-text" style="font-size: small;">Blind Dating</spam>
+              </h3>
+              <div class="m-4">
+                <img style="height: 130px;" src="{% static 'img/user/event_1.png' %}" alt="">
+
+                <button type="button" class="btn btn-danger" style="float:right">
+                  <span class="badge text-danger text-bg-light"> + 100</span>
+                  Peoples
+                </button>
+              </div>
+              <div class="apply_event">
+                <span class="badge bg-secondary" style="float: left; font-size: 20px;">OFFLINE</span>
+                <a href="#" class="btn" style="float:right">Apply Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 mt-4">
+          <div class="card">
+            <div class="card-body">
+              <div style="float: right;">
+                <a href=""><button class="link_btn"><i data-feather="link"></i></button></a>
+                <a href=""><button class="link_btn"><i data-feather="twitter"></i></button></a>
+              </div>
+
+              <h3 class="card-title">Speed Dating <br>
+                <spam class="card-subtitle form-text" style="font-size: small;">Blind Dating</spam>
+              </h3>
+              <div class="m-4">
+                <img style="height: 130px;" src="{% static 'img/user/event_1.png' %}" alt="">
+
+                <button type="button" class="btn btn-danger" style="float:right">
+                  <span class="badge text-danger text-bg-light"> + 100</span>
+                  Peoples
+                </button>
+              </div>
+              <div class="apply_event">
+                <span class="badge bg-secondary" style="float: left; font-size: 20px;">OFFLINE</span>
+                <a href="#" class="btn" style="float:right">Apply Now</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+
+
+
     </div>
-    <!-- Feed -->
-    <div class="navbar navbar-expand-lg">
-      <div class="container">
-        <div class="container text-center">
-          <div
-            class="row"
-            style="height: 200px; background-color: rgba(255, 0, 0, 0.1)"
-          >
-            <div class="col h-100 d-inline-block border">Column</div>
-            <div class="col h-100 d-inline-block border">Column</div>
-            <div class="col h-100 d-inline-block border">Column</div>
-          </div>
-          <div
-            class="row"
-            style="height: 200px; background-color: rgba(255, 0, 0, 0.1)"
-          >
-            <div class="col h-100 d-inline-block border">Column</div>
-            <div class="col h-100 d-inline-block border">Column</div>
-            <div class="col h-100 d-inline-block border">Column</div>
-          </div>
-          <div
-            class="row"
-            style="height: 200px; background-color: rgba(255, 0, 0, 0.1)"
-          >
-            <div class="col h-100 d-inline-block border">Column</div>
-            <div class="col h-100 d-inline-block border">Column</div>
-            <div class="col h-100 d-inline-block border">Column</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <script src="" async defer></script>
-  </body>
-</html>
+  </div>
+</div>
+
+
+<br><br>
+
+<footer>
+  <div class="footer-text">
+    2023 © Mingle
+  </div>
+</footer>
+
+<script>
+  var settings = {
+    "url": "http://127.0.0.1:8000/event/get-event-list/",
+    "method": "GET",
+    "timeout": 0,
+    "headers": {
+      "Cookie": "csrftoken=XW0sN9LTamle7LxulrSxjWVBUScH8AN3zsm33JFul9pJSpG3WIwCpJbsA4sTHQXu"
+    },
+  };
+
+  $.ajax(settings).done(function (response) {
+    let res = response.data
+    for (i in res) {
+      console.log(res[i].id);
+    }
+  });
+</script>
+
+
+{% endblock content %}
