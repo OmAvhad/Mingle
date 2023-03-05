@@ -27,7 +27,7 @@ def sendOTPEmail(rd):
     print("res :: ", res)
     if res == 1:
         otp.objects.filter(email=rd['email']).delete()
-        new_otp = otp.objects.create(email=rd['email'], otp=check_otp)
+        new_otpse = otp.objects.create(email=rd['email'], otp=check_otp)
 
         return True
     else:
