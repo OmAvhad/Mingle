@@ -8,7 +8,7 @@ from django.contrib.auth.models import auth
 from UserAccounts.models import *
 from django.views.decorators.csrf import csrf_exempt
 import random
-from event.models import Passions
+from event.models import OrganizationDetail, Passions
 
 
 
@@ -17,7 +17,11 @@ from event.models import Passions
 def sendOTPEmail(rd):
 
     check_otp = random.randint(10000, 99999)
-    subject = f"Welcome to ByteCodes {rd['first_name']}"
+    try:
+        subject = f"Welcome to ByteCodes {rd['first_name']}"
+    except:
+        subject = f"Welcome to ByteCodes {rd['org_name']}"
+
     msg = f"OTP :: {check_otp}"
     html_message = render_to_string('temp/otp_email.html', {"check_otp": check_otp, "sender": settings.EMAIL_HOST_USER, "receiver": rd['email']})
     # print("html_message :: ", html_message)
@@ -48,7 +52,7 @@ def Register(request):
             if not se:
                 return HttpResponse("Something went wrong!")
             
-            new_user = CustomUser.objects.create_user(username=rd['email'], password=rd['password'], email=rd['email'],
+            new_user = CustomUser.objects.create_user(username=rd['email'], password=rd['password'], email=rd['email'], user_type="user",
                                                     first_name=rd['first_name'], last_name=rd['last_name'])
             new_user.save()
 
@@ -81,10 +85,13 @@ def VerifyOTP(request):
 
         user = CustomUser.objects.get(email=rd['email'])
         print("user :: ", user)
+
         if user is not None:
             auth.login(request, user)
-            return redirect("/profile/details")
+            if user.user_type == "user":
+                return redirect("/profile/details")
         
+            return redirect("/org/dashboard")
         
         # return HttpResponse("Email Verified Successfully!!!")
     
@@ -109,7 +116,11 @@ def Login(request):
         if user is not None:
             auth.login(request, user)
 
-            return redirect('/dashboard')
+            if user.user_type == "user":
+                return redirect('/dashboard')
+            
+            return redirect('/org/dashboard')
+
             # return HttpResponse(f"<h1>Login Successful {user.first_name} !</h1>")
 
 
@@ -172,6 +183,30 @@ def Logout(request):
     auth.logout(request)
 
     return redirect('/')
+
+
+
+def RegisterOrgnization(request):
+
+    if request.method == "POST":
+        rd = request.POST
+        print("rd :: ", rd)
+
+        se = sendOTPEmail(rd)
+        if not se:
+            return HttpResponse("Something went wrong!")
+
+        new_org = CustomUser.objects.create_user(email=rd['email'], password=rd['password'], first_name=rd['org_name'], user_type="organizer")
+        new_org.save()
+
+        new_org_d = OrganizationDetail.objects.create(organization_address=rd['address'], organization_logo="", social_link=rd['link'])
+        new_org_d.save()
+
+        return render(request, 'main/verify_otp.html', {"email":rd['email']})
+
+    return render(request, 'org/register.html')
+
+
 
 
 

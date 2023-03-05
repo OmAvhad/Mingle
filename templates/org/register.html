@@ -10,12 +10,12 @@
 <section class="container">
     <header>Organisation Registration</header>
     <br>
-    <form action="/profile/details" method="POST">
+    <form action="/org/register" method="POST">
         {% csrf_token %}
 
         <div class="mb-3 p-1">
             <h5><label for="exampleFormControlInput1" class="form-label">Organisation Name</label></h5>
-            <input type="name" name="first_name" class="form-control" id="name" placeholder="{{request.user.first_name}}">
+            <input type="text" name="org_name" class="form-control" id="org_name" placeholder="Orgnization name">
         </div>
 
         <div class="mb-3 p-1">
@@ -30,7 +30,7 @@
 
         <div class="mb-3 p-1">
             <h5><label for="exampleFormControlInput1" class="form-label">Address</label></h5>
-            <textarea type="address" class="form-control" id="address"></textarea>
+            <textarea type="address" name="address" class="form-control" id="address"></textarea>
         </div>
     
         <div class="mb-3 p-1">
@@ -39,11 +39,11 @@
         </div>
         <div class="mb-3 p-1">
             <h5><label for="exampleFormControlInput1" class="form-label">Password</label></h5>
-            <input type="password" name="password" class="form-control" id="password" placeholder="{{request.user.first_name}}">
+            <input type="password" name="password" class="form-control" id="password" placeholder="password">
         </div>
         <div class="mb-3 p-1">
             <h5><label for="exampleFormControlInput1" class="form-label">Confirm Password</label></h5>
-            <input type="password" name="cpassword" class="form-control" id="cpassword" placeholder="{{request.user.first_name}}">
+            <input type="password" name="cpassword" class="form-control" id="cpassword" placeholder="password">
         </div>
         <input class="cn" style="float: right;" type="submit">
         <!-- <button class="cn" style="float: right;" onclick="submitForm()" type="button"><a class="text-white">Register</a></button> -->

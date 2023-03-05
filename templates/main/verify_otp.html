@@ -34,6 +34,7 @@
 <form action="/verify" method="POST">
 
     {% csrf_token %}
+    
     <div class="d-flex flex-row mt-5">
         <input name="email" type="text" value="{{email}}" style="display: none;">
         <input name="otp" type="text" class= "form-control" autofocus="">
