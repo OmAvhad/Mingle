@@ -7,7 +7,7 @@
 
 
 <section class="container">
-    <header>CREATE EVENT</header>
+    <header>CREATE NEW EVENT</header>
     <form action="/account/register" method="POST">
         {% csrf_token %}
 
@@ -17,7 +17,7 @@
         </div>
 
         <div class="mb-3 p-1">
-          <h5><label for="exampleFormControlInput1" class="form-label">Cover Picture</label></h5>
+          <h5><label for="exampleFormControlInput1" class="form-label"`id="cover_picture"`>Cover Picture</label></h5>
           <input type="file" class="form-control" id="cover_picture" accept="image/png, image/gif, image/jpeg">
       </div>
 
@@ -205,17 +205,26 @@
 
 
 <script>
-    var settings = {
-        "url": "http://127.0.0.1:8000/event/add-event/?id=6&event_name&registeration_limit&location&date&created_at&updated_at",
-        "method": "POST",
-        "timeout": 0,
-        "headers": {
-          "Cookie": "csrftoken=XW0sN9LTamle7LxulrSxjWVBUScH8AN3zsm33JFul9pJSpG3WIwCpJbsA4sTHQXu"
-        },
-      };
-      
-      $.ajax(settings).done(function (response) {
-        console.log(response);
-      });
+    document.getElementById("cover_picture").addEventListener("change", function() {
+        var media = document.getElementById("cover_picture").value;
+        var form = new FormData();
+        form.append("media", fileInput.files[0], media);
+        
+        var settings = {
+          "url": "http://pankajportfolio.pythonanywhere.com/upload_media/",
+          "method": "POST",
+          "timeout": 0,
+          "processData": false,
+          "mimeType": "multipart/form-data",
+          "contentType": false,
+          "data": form
+        };
+        
+        $.ajax(settings).done(function (response) {
+          console.log(response);
+        });
+    });
+
+    
 </script>
 {% endblock content %}

@@ -246,33 +246,6 @@
             document.getElementById('interests').value = JSON.stringify(interests);
         }
 
-
-
-        /*var settings = {
-            "url": "http://127.0.0.1:8000/profile/details",
-            "method": "POST",
-            "timeout": 0,
-            "headers": {
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-            "data": {
-              "gender": gender,
-              "gop": gop,
-              "bdate": bdate,
-              "iig": iig,
-              "interests": interests,
-              "lf": lf,
-              csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
-            }
-          };
-          
-        function submitForm(){
-            console.log(gender)
-            $.ajax(settings).done(function (response) {
-              console.log(response.status);
-            });
-        }*/
-
     </script>
 
     {% endblock content %}

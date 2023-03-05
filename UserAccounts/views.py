@@ -122,6 +122,9 @@ def user_dashboard(request):
 def user_profile(request):
     return render(request, 'user/profile.html')
 
+def org_register(request):
+    return render(request, 'org/register.html')
+
 def org_dashboard(request):
     return render(request, 'org/dashboard.html')
 
