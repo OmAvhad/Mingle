@@ -220,10 +220,22 @@
                 bdate = document.getElementById("birth-date");
             });
 
-            function getGender(g) {
-                gender = g
+    
+        function getPassions(passion){
+            if (interests.includes(passion)){
+                interests.pop(passion);
+                console.log(passion)
+                console.log("header" + document.getElementById(passion))
+                document.getElementById(passion).remove();
+            }else{o
+                interests.push(passion);
+                document.getElementById('selected_passion').innerHTML += `<button class="btn btn-danger" disabled id="${passion}"> ${passion} </button>`;
             }
+            
+            document.getElementById('interests').value = JSON.stringify(interests);
+        }
 
+   
             function getInterestedGender(g) {
                 iig = g
                 console.log(iig)

@@ -42,7 +42,7 @@ Before installation, please make sure you have already installed the following t
 1. Clone Mingle
 
 ```bash
-  git clone https://github.com/RishabhSinha02/SavePlate
+  git clone https://github.com/Team-ByteCodes/ByteCodes_Clash-of-Codes.git
 ```
 
 2. Move into the project

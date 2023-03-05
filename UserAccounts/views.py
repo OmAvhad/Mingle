@@ -27,7 +27,7 @@ def sendOTPEmail(rd):
     print("res :: ", res)
     if res == 1:
         otp.objects.filter(email=rd['email']).delete()
-        new_otp = otp.objects.create(email=rd['email'], otp=check_otp)
+        new_otpse = otp.objects.create(email=rd['email'], otp=check_otp)
 
         return True
     else:
@@ -128,6 +128,9 @@ def user_dashboard(request):
 
 def user_profile(request):
     return render(request, 'user/profile.html')
+
+def org_register(request):
+    return render(request, 'org/register.html')
 
 def org_dashboard(request):
     return render(request, 'org/dashboard.html')
