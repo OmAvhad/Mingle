@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link href="{% static 'css/temp/register.css' %}" rel="stylesheet" />
+
+
+
+
+<section class="container">
+    <header>Organisation Registration</header>
+    <br>
+    <form action="/profile/details" method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3 p-1">
+            <h5><label for="exampleFormControlInput1" class="form-label">Organisation Name</label></h5>
+            <input type="name" name="first_name" class="form-control" id="name" placeholder="{{request.user.first_name}}">
+        </div>
+
+        <div class="mb-3 p-1">
+            <h5><label for="exampleFormControlInput1" class="form-label"`id="org_logo"`>Logo</label></h5>
+            <input type="file" class="form-control" id="org_logo" accept="image/png, image/gif, image/jpeg">
+        </div>
+
+        <div class="mb-3 p-1">
+            <h5><label for="exampleFormControlInput1" class="form-label">Email</label></h5>
+            <input type="email" class="form-control" name="email" id="email" placeholder="abc@xyz.com">
+        </div>
+
+        <div class="mb-3 p-1">
+            <h5><label for="exampleFormControlInput1" class="form-label">Address</label></h5>
+            <textarea type="address" class="form-control" id="address"></textarea>
+        </div>
+    
+        <div class="mb-3 p-1">
+            <h5><label for="exampleFormControlInput1" class="form-label">Social Link</label></h5>
+            <input type="link" class="form-control" name="link" id="link">
+        </div>
+        <div class="mb-3 p-1">
+            <h5><label for="exampleFormControlInput1" class="form-label">Password</label></h5>
+            <input type="password" name="password" class="form-control" id="password" placeholder="{{request.user.first_name}}">
+        </div>
+        <div class="mb-3 p-1">
+            <h5><label for="exampleFormControlInput1" class="form-label">Confirm Password</label></h5>
+            <input type="password" name="cpassword" class="form-control" id="cpassword" placeholder="{{request.user.first_name}}">
+        </div>
+        <input class="cn" style="float: right;" type="submit">
+        <!-- <button class="cn" style="float: right;" onclick="submitForm()" type="button"><a class="text-white">Register</a></button> -->
+    </form>
+</section>
+
+<br><br>
+
+{% endblock content %}

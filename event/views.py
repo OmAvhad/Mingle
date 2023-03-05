@@ -10,6 +10,8 @@ from rest_framework.decorators import api_view
 
 from datetime import datetime
 from fuzzywuzzy import fuzz
+from django.core.mail import send_mail
+from  mingle import settings
 
 
 # @transaction.atomic
@@ -151,8 +153,26 @@ def createConnection(request,event_id):
     m = max(ftl)
     mi = ftl.index(m)
 
-    # print("final :: ", qs[mi])
-    # Match.objects.create(user_1_id=u_id,user_2_id=qs[mi].id)
-            
-# def create_event(request):
-#     return render(request, 'events/create_event.html')
+    print("final :: ", qs[mi])
+    print("user_2_id=qs[mi].id",qs[mi].id)
+    print("user_2_id=qs[mi].id",user_id)    
+    Match.objects.create(user_1_id=user_id,user_2_id=qs[mi].id)
+    print("Match is Created")           
+    subject = f"You got a matched"
+    msg = f"Congratulations! You got a match"
+    c_user = CustomUser.objects.filter(id=user_id)
+    c_user2 = CustomUser.objects.filter(id=qs[mi].id)
+    res = send_mail(subject, msg, settings.EMAIL_HOST_USER, [c_user.last().email,c_user2.last().email], fail_silently=False)
+
+   
+
+
+def create_event(request):
+    return render(request, 'events/create_event.html')
+
+
+
+@api_view(['GET'])
+def no_of_registeration(request):
+    count  = UserAppliedforEvents.objects.all().count()
+    return JsonResponse({"count":count})
