@@ -273,15 +273,19 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
+                  <li class="nav-item">
+                    <a class="nav-link" href="#organisation"><button type="button" class="btn">Organisation</button></a>
+                </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#upcoming_events"><button type="button" class="btn">Events</button></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href=""><button type="button" class="btn">About</button></a>
+                        <a class="nav-link" href="#about"><button type="button" class="btn">About</button></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href=""><button type="button" class="btn">Contributers</button></a>
                     </li>
+                    
 
 
                 </ul>
@@ -388,6 +392,20 @@
             </div>
     </div>
 
+ <!-- Register Organisation  -->
+    <div id="organisation" class="likes" style="background-color: #f8e5eb; padding: 10px;">
+        <br>
+        <center>
+            <h3>Are you going to Organize any event for blind dating? </h3>
+            <br>
+        <a href="{% url 'UserAccounts:org_register' %}"><button type="button" class="btn btn-lg text-white" style="background-color: #fe5b7e;">
+             Register Now 
+        </button></a>
+        </center>
+        
+          <br>
+    </div>
+
 <div id="upcoming_events" class="m-4">
     <center><h3>Upcoming Events</h3></center>
 </div>
@@ -463,6 +481,21 @@
 
 
 <br>
+<div id="about" class="likes" style="background-color: #f8e5eb; padding: 10px;">
+  <br>
+  <center>
+      <h3>About Us </h3>
+      <br>
+  <div style="width: 600px;" class="org_details m-5">
+    It is impossible to judge someone within a couple of seconds, based on few pictures and a cheesy bio, like in the case of 99% of meeting and dating apps. Step out of the rut of mainstream virtual communication on social media networks and engage in real connections with BLIND MEET. Our app is a safe space for networking and meeting new people near your vicinity, without having to shift around much of your time. This app is mighty useful for people who battle social awkwardness on a daily basis and helps experience the joy of spending quality time with a person who shares similar tastes and quirks as yourself. Keep up to speed by networking, 21st century style, with BLIND MEET.
+  </div>
+
+
+
+  </center>
+  
+    <br>
+</div>
 
 
 <footer>
