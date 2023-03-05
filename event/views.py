@@ -3,7 +3,7 @@ from .serializers import *
 from django.http import JsonResponse
 # Create your views here.
 from UserAccounts.models import *
-
+from django.shortcuts import redirect
 from django.db import transaction
 from django.contrib.auth.decorators import login_required
 from rest_framework.decorators import api_view
@@ -15,24 +15,25 @@ from  mingle import settings
 
 
 # @transaction.atomic
-# @login_required
-@api_view(['POST'])
+@login_required
 def addEvent(request):
-    data = request.data 
-    user_id = request.query_params.get('id')
-    user = CustomUser.objects.filter(id=user_id).last()
-    query_set = Events.objects.filter(user__id=data.get('id'),event_name=data.get('event_name'))
-    if query_set.exists():
-        return JsonResponse({"message":"Event Already Added"})
-    else:
-        if user.user_type=="organizer":
-            serializer = EventSerializer(data=data)
-            if serializer.is_valid():
-                serializer.save()
-                return JsonResponse({"msg":"New Event is Added"})
-            else:
-                print(serializer.errors)
-                return JsonResponse({"msg":"User Does not Match"})
+    if request.method == "POST":
+        data = request.POST
+        print('-----------------')
+        user_id = request.user.id
+        # user = CustomUser.objects.filter(id=user_id).last()
+        query_set = Events.objects.filter(user__id=data.get('id'),event_name=data.get('event_name'))
+        if query_set.exists():
+            return JsonResponse({"message":"Event Already Added"})
+        else:
+            if request.user.user_type=="organizer":
+                serializer = EventSerializer(data=data)
+                if serializer.is_valid():
+                    serializer.save()
+                    return redirect('UserAccounts:org_dash')
+                else:
+                    return render(request, 'events/create_event.html')
+    return render(request, 'events/create_event.html')
         
 
 @api_view(['GET'])
@@ -175,3 +176,6 @@ def create_event(request):
 def no_of_registeration(request):
     count  = UserAppliedforEvents.objects.all().count()
     return JsonResponse({"count":count})
+
+def user_registered_events(request):
+    return render(request, 'user/user_events.html')

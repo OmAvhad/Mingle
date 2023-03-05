@@ -1,8 +1,4 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
-
-
+{% extends 'base.html' %} {% load static %} {% block content %}
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -48,9 +44,11 @@
 </style>
 <header class="header">
   <div class="logo">
-    <a class="" href="/"><img height="40" src="{% static 'img/main/Mingle_Logo.png' %}" alt=""></a>
+    <a class="" href="/"
+      ><img height="40" src="{% static 'img/main/Mingle_Logo.png' %}" alt=""
+    /></a>
     <div class="search_box">
-      <input type="text" placeholder="Search Event">
+      <input type="text" placeholder="Search Event" />
       <i class="fa-sharp fa-solid fa-magnifying-glass">Search</i>
     </div>
   </div>
@@ -58,15 +56,13 @@
   <div class="header-icons">
     <i class="fas fa-bell"></i>
     <div class="account">
-      <img src="{% static 'img/main/female_profile.png' %}" alt="">
+      <img src="{% static 'img/main/female_profile.png' %}" alt="" />
       <h5>Rishabh</h5>
     </div>
   </div>
 </header>
 <div class="container">
   <div class="main-body">
-
-
     <div class="promo_card mb-5">
       <h1>Welcome to Mingle</h1>
       <span>Best for Blind Dating </span>
@@ -77,9 +73,7 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="card">
-          <div class="card-body" id="banner">
-
-          </div>
+          <div class="card-body" id="banner"></div>
         </div>
       </div>
 
@@ -87,116 +81,121 @@
       <div class="col-sm-6">
         <div class="card">
           <div class="card-body">
-            <div style="float: right;">
-              <a href=""><button class="link_btn"><i data-feather="link"></i></button></a>
-              <a href=""><button class="link_btn"><i data-feather="twitter"></i></button></a>
+            <div style="float: right">
+              <a href=""
+                ><button class="link_btn"><i data-feather="link"></i></button
+              ></a>
+              <a href=""
+                ><button class="link_btn"><i data-feather="twitter"></i></button
+              ></a>
             </div>
 
-            <h3 class="card-title">Speed Dating <br>
-              <spam class="card-subtitle form-text" style="font-size: small;">Blind Dating</spam>
+            <h3 class="card-title">
+              Speed Dating <br />
+              <spam class="card-subtitle form-text" style="font-size: small"
+                >Blind Dating</spam
+              >
             </h3>
             <div class="m-4">
-              <img style="height: 130px;" src="{% static 'img/user/event_1.png' %}" alt="">
+              <img
+                style="height: 130px"
+                src="{% static 'img/user/event_1.png' %}"
+                alt=""
+              />
 
-              <button type="button" class="btn btn-danger" style="float:right">
+              <button type="button" class="btn btn-danger" style="float: right">
                 <span class="badge text-danger text-bg-light"> + 100</span>
                 Peoples
               </button>
             </div>
             <div class="apply_event">
-              <span class="badge bg-secondary" style="float: left; font-size: 20px;">OFFLINE</span>
-              <a href="#" class="btn" style="float:right">Apply Now</a>
+              <span
+                class="badge bg-secondary"
+                style="float: left; font-size: 20px"
+                >OFFLINE</span
+              >
+              <a href="#" class="btn" style="float: right">Apply Now</a>
             </div>
           </div>
         </div>
       </div>
     </div>
-  
 
-<div id="open_events">
-  <br>
-  <center><h3 class="m-3">Open Events</h3></center>
-  <div class="row">
-    <div class="col-sm-6">
-      <div class="card">
-        <div class="card-body">
-          <div style="float: right;">
-            <a href=""><button class="link_btn"><i data-feather="link"></i></button></a>
-            <a href=""><button class="link_btn"><i data-feather="twitter"></i></button></a>
-          </div>
-
-          <h3 class="card-title">Speed Dating <br>
-            <spam class="card-subtitle form-text" style="font-size: small;">Blind Dating</spam>
-          </h3>
-          <div class="m-4">
-            <img style="height: 130px;" src="{% static 'img/user/event_1.png' %}" alt="">
-
-            <button type="button" class="btn btn-danger" style="float:right">
-              <span class="badge text-danger text-bg-light"> + 100</span>
-              Peoples
-            </button>
-          </div>
-          <div class="apply_event">
-            <span class="badge bg-secondary" style="float: left; font-size: 20px;">OFFLINE</span>
-            <a href="#" class="btn" style="float:right">Apply Now</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- card  -->
-    <div class="col-sm-6">
-      <div class="card">
-        <div class="card-body">
-          <div style="float: right;">
-            <a href=""><button class="link_btn"><i data-feather="link"></i></button></a>
-            <a href=""><button class="link_btn"><i data-feather="twitter"></i></button></a>
-          </div>
-
-          <h3 class="card-title">Speed Dating <br>
-            <spam class="card-subtitle form-text" style="font-size: small;">Blind Dating</spam>
-          </h3>
-          <div class="m-4">
-            <img style="height: 130px;" src="{% static 'img/user/event_1.png' %}" alt="">
-
-            <button type="button" class="btn btn-danger" style="float:right">
-              <span class="badge text-danger text-bg-light"> + 100</span>
-              Peoples
-            </button>
-          </div>
-          <div class="apply_event">
-            <span class="badge bg-secondary" style="float: left; font-size: 20px;">OFFLINE</span>
-            <a href="#" class="btn" style="float:right">Apply Now</a>
-          </div>
-        </div>
-      </div>
+    <div id="open_events">
+      <br />
+      <center><h3 class="m-3">Open Events</h3></center>
+      
     </div>
   </div>
-
-
-
-
-</div>
-</div>
 </div>
 
-
-<br><br><br><br>
+<br /><br /><br /><br />
 
 <script>
   var settings = {
-    "url": "http://127.0.0.1:8000/event/get-event-list/",
-    "method": "GET",
-    "timeout": 0,
-    "headers": {
-      "Cookie": "csrftoken=XW0sN9LTamle7LxulrSxjWVBUScH8AN3zsm33JFul9pJSpG3WIwCpJbsA4sTHQXu"
+    url: "http://127.0.0.1:8000/event/get-event-list/",
+    method: "GET",
+    timeout: 0,
+    headers: {
+      Cookie:
+        "csrftoken=XW0sN9LTamle7LxulrSxjWVBUScH8AN3zsm33JFul9pJSpG3WIwCpJbsA4sTHQXu",
     },
   };
 
   $.ajax(settings).done(function (response) {
-    let res = response.data
+    let res = response.data;
     for (i in res) {
       console.log(res[i].id);
+      document.getElementById("open_events").innerHTML = `
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <div style="float: right">
+                <a href=""
+                  ><button class="link_btn"><i data-feather="link"></i></button
+                ></a>
+                <a href=""
+                  ><button class="link_btn">
+                    <i data-feather="twitter"></i></button
+                ></a>
+              </div>
+
+              <h3 class="card-title">
+                ${res[i].event_name} <br />
+                <spam class="card-subtitle form-text" style="font-size: small"
+                  >${res[i].user.first_name}</spam
+                >
+              </h3>
+              <div class="m-4">
+                <img
+                  style="height: 130px"
+                  src="${res[i].cover_image}"
+                  alt=""
+                />
+
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  style="float: right"
+                >
+                  <span class="badge text-danger text-bg-light"> + 100</span>
+                  Peoples
+                </button>
+              </div>
+              <div class="apply_event">
+                <span
+                  class="badge bg-secondary"
+                  style="float: left; font-size: 20px"
+                  >OFFLINE</span
+                >
+                <a href="#" class="btn" style="float: right">Apply Now</a>
+              </div>
+            </div>
+          </div>
+        </div>        
+      </div>
+      `
     }
   });
 </script>
