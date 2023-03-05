@@ -8,17 +8,18 @@
 
 <section class="container">
     <header>CREATE EVENT</header>
-    <form action="/account/register" method="POST">
+    <form action="" method="POST">
         {% csrf_token %}
 
         <div class="mb-3 p-1">
             <h5><label for="exampleFormControlInput1" class="form-label">Event Name</label></h5>
-            <input type="name" class="form-control" id="event_name" placeholder="Dating Club">
+            <input type="name" class="form-control" id="event_name" placeholder="Dating Club" name="event_name">
         </div>
 
         <div class="mb-3 p-1">
           <h5><label for="exampleFormControlInput1" class="form-label"`id="cover_picture"`>Cover Picture</label></h5>
           <input type="file" class="form-control" id="cover_picture" accept="image/png, image/gif, image/jpeg">
+          <input type="text" class="form-control" hidden id="cover_picture_url" value ="" >
       </div>
 
       <div class="mb-3 p-1">
@@ -37,178 +38,23 @@
       <div class="mb-3 p-1">
         <h5><label for="exampleFormControlInput1" class="form-label">Registration Starts At</label></h5>
         <input type="datetime-local" class="form-control" id="event_start_date" name="event_start_date">
-    </div>
-    <div class="mb-3 p-1">
+        </div>
+        <div class="mb-3 p-1">
       <h5><label for="exampleFormControlInput1" class="form-label">Registration Ends At</label></h5>
       <input type="datetime-local" class="form-control" id="event_end_date" name="event_end_date">
-  </div>
-        <button class="cn" style="float: right;"><a class="text-white" href="/">Create</a></button>
+         </div>
+        <button class="cn" style="float: right;" type="submit"><a class="text-white">Create</a></button>
     </form>
 </section>
 
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Passions</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="">
-                    <div class="m-2" style="float: left;">
-                        <input type="checkbox" class="btn-check mb-2" name="options-outlined" id="check-1"
-                            autocomplete="off">
-                        <label class="btn btn-outline-danger" for="check-1">Sports</label>
-                    </div>
-                    <div class="m-2" style="float: left;">
-                        <input type="checkbox" class="btn-check mb-2" name="options-outlined" id="check-2"
-                            autocomplete="off">
-                        <label class="btn btn-outline-danger" for="check-2">Harry Potter</label>
-                    </div>
-                    <div class="m-2" style="float: left;">
-                        <input type="checkbox" class="btn-check mb-2" name="options-outlined" id="check-3"
-                            autocomplete="off">
-                        <label class="btn btn-outline-danger" for="check-3">SPA</label>
-                    </div>
-                    <div class="m-2" style="float: left;">
-                        <input type="checkbox" class="btn-check mb-2" name="options-outlined" id="check-4"
-                            autocomplete="off">
-                        <label class="btn btn-outline-danger" for="check-4">Self Care</label>
-                    </div>
-                    <div class="m-2" style="float: left;">
-                        <input type="checkbox" class="btn-check mb-2" name="options-outlined" id="check-5"
-                            autocomplete="off">
-                        <label class="btn btn-outline-danger" for="check-5">Ludo</label>
-                    </div>
-                    <div class="m-2" style="float: left;">
-                        <input type="checkbox" class="btn-check mb-2" name="options-outlined" id="check-6"
-                            autocomplete="off">
-                        <label class="btn btn-outline-danger" for="check-6">Bollywood</label>
-                    </div>
-                    <div class="m-2" style="float: left;">
-                        <input type="checkbox" class="btn-check mb-2" name="options-outlined" id="check-7"
-                            autocomplete="off">
-                        <label class="btn btn-outline-danger" for="check-7">Running</label>
-                    </div>
-                    <div class="m-2" style="float: left;">
-                        <input type="checkbox" class="btn-check mb-2" name="options-outlined" id="check-8"
-                            autocomplete="off">
-                        <label class="btn btn-outline-danger" for="check-8">Coffee</label>
-                    </div>
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-danger">Save changes</button>
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- looking Modal  -->
-<div class="modal fade" id="looking" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="m-3 text-center">
-                <button style="float: right;" type="button" class="btn-close" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
-                <h3 class="modal-title text-dark" id="exampleModalLabel">Right now I'm looking for...</h3>
-                <div id="emailHelp" style="font-size: medium;" class="form-text">Increase compatibility by sharing
-                    yours!</div>
-
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-4 mt-3">
-                        <button class="btn btn-light">
-                            <br>
-                            <img height="40" src="{% static 'img/org/LTP.png' %}" alt="">
-                            <br>
-                            Long-Term
-                            <br>
-                            Partner
-                            <br>
-                            <br>
-                        </button>
-                    </div>
-                    <div class="col-sm-4 mt-3">
-                        <button class="btn btn-light">
-                            <br>
-                            <img height="40" src="{% static 'img/org/LTOS.png' %}" alt="">
-                            <br>
-                            Long-Term <br> Open to
-                            <br>
-                            Short
-                            <br>
-                        </button>
-                    </div>
-                    <div class="col-sm-4 mt-3">
-                        <button class="btn btn-light">
-                            <br>
-                            <img height="40" src="{% static 'img/org/STOL.png' %}" alt="">
-                            <br>
-                            Short-Term
-                            <br>
-                            open to
-                            <br>
-                            long <br>
-                        </button>
-                    </div>
-                    <div class="col-sm-4 mt-3">
-                        <button class="btn btn-light">
-                            <br>
-                            <img height="40" src="{% static 'img/org/STF.png' %}" alt="">
-                            <br>
-                            Short-Term
-                            <br>
-                            fun
-                            <br><br>
-                        </button>
-                    </div>
-                    <div class="col-sm-4 mt-3">
-                        <button class="btn btn-light">
-                            <br>
-                            <img height="40" src="{% static 'img/org/NF.png' %}" alt="">
-                            <br>
-                            New Friends
-                            <br>
-                            
-                            <br><br>
-                        </button>
-                    </div>
-                    <div class="col-sm-4 mt-3">
-                        <button class="btn btn-light">
-                            <br>
-                            <img height="40" src="{% static 'img/org/SFIO.png' %}" alt="">
-                            <br>
-                            Still finguring
-                            <br>
-                            it out
-                            <br><br>
-                        </button>
-
-                        <br><br>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-
-
 <script>
-    document.getElementById("cover_picture").addEventListener("change", function() {
-        var media = document.getElementById("cover_picture").value;
+    document.getElementById("cover_picture").addEventListener("change", function(e) {
+
+        e.preventDefault()
+
+        var media = document.getElementById("cover_picture");
         var form = new FormData();
-        form.append("media", fileInput.files[0], media);
+        form.append("media", media.files[0]);
         
         var settings = {
           "url": "http://pankajportfolio.pythonanywhere.com/upload_media/",
@@ -221,8 +67,11 @@
         };
         
         $.ajax(settings).done(function (response) {
-          console.log(response);
+            var rdata = JSON.parse(response)
+            document.getElementById('cover_picture_url').value = rdata.data[0].media_url
+            console.log(document.getElementById('cover_picture_url').value)
         });
+
     });
 
     
