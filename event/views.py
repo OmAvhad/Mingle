@@ -152,7 +152,7 @@ def createConnection(request,event_id):
 
     # print("final :: ", qs[mi])
     # Match.objects.create(user_1_id=u_id,user_2_id=qs[mi].id)
-            
+    
 
 
 

@@ -14,7 +14,8 @@
 
         <div class="mb-3 p-1">
             <h5><label for="exampleFormControlInput1" class="form-label">Name</label></h5>
-            <input type="name" name="first_name" class="form-control" id="name" placeholder="{{request.user.first_name}}">
+            <input type="name" name="first_name" class="form-control" id="name"
+                placeholder="{{request.user.first_name}}">
         </div>
 
         <div class="mb-3 p-1">
@@ -24,17 +25,18 @@
         <div class="mb-3 p-1">
             <h5><label for="exampleFormControlInput1" class="form-label">Gender</label><br></h5>
 
-            <input type="radio" class="btn-check" name="gender" id="danger-outlined-1" autocomplete="off"  value="1" onclick="getGender('Male')">
+            <input type="radio" class="btn-check" name="gender" id="danger-outlined-1" autocomplete="off" value="Male">
             <label class="btn btn-outline-danger" for="danger-outlined-1">Male</label>
 
-            <input type="radio" class="btn-check" name="gender" id="danger-outlined-2" autocomplete="off" value="2" onclick="getGender('Female')">
+            <input type="radio" class="btn-check" name="gender" id="danger-outlined-2" autocomplete="off"
+                value="Female">
             <label class="btn btn-outline-danger" for="danger-outlined-2">Female</label>
 
-            <input type="radio" class="btn-check" name="gender" id="danger-outlined-3" autocomplete="off" value="3" onclick="getGender('Others')">
+            <input type="radio" class="btn-check" name="gender" id="danger-outlined-3" autocomplete="off" value="Other">
             <label class="btn btn-outline-danger" for="danger-outlined-3">Others</label>
             <br>
             <div class="mb-3 mt-1 form-check text-secondary">
-                <input type="checkbox" class="form-check-input p-1" id="show_gender" onclick="setGOP()">
+                <input name="gop" type="checkbox" class="form-check-input p-1" id="gop" value="true">
                 <label class="form-check-label label-danger" for="exampleCheck1">Show my gender on my profile</label>
             </div>
         </div>
@@ -42,13 +44,13 @@
         <div class="mb-3 p-1">
             <h5><label for="exampleFormControlInput1" class="form-label">Show me:</label></h5>
 
-            <input type="radio" class="btn-check" name="iig" id="danger-outlined-4" autocomplete="off" onclick="getInterestedGender('Male')">
+            <input type="radio" class="btn-check" name="iig" id="danger-outlined-4" autocomplete="off" value="Male">
             <label class="btn btn-outline-danger" for="danger-outlined-4">Male</label>
 
-            <input type="radio" class="btn-check" name="iig" id="danger-outlined-5" autocomplete="off" onclick="getInterestedGender('Female')">
+            <input type="radio" class="btn-check" name="iig" id="danger-outlined-5" autocomplete="off" value="Female">
             <label class="btn btn-outline-danger" for="danger-outlined-5">Female</label>
 
-            <input type="radio" class="btn-check" name="iig" id="danger-outlined-6" autocomplete="off" onclick="getInterestedGender('Others')">
+            <input type="radio" class="btn-check" name="iig" id="danger-outlined-6" autocomplete="off" value="Others">
             <label class="btn btn-outline-danger" for="danger-outlined-6">Others</label>
         </div>
 
@@ -60,7 +62,7 @@
                 + Add Passion
             </button>
             <div class="m-2" id="selected_passion">
-                <input name="interests" type="hidden" value="" id="interests"/>
+                <input name="interests" type="hidden" value="" id="interests" />
             </div>
         </div>
 
@@ -70,8 +72,8 @@
                 data-bs-target="#looking">
                 + Add Relationship Intent
             </button>
+            <input name="lf" type="hidden" value="" id="lf" />
             <div class="m-2" id="selected_lf">
-                <input name="lf" type="hidden" value="" id="lf"/>
             </div>
         </div>
 
@@ -94,16 +96,16 @@
                 <form action="">
                     <div class="m-2" style="float: left;">
                         {% for p in passions%}
-                            <input type="checkbox" class="btn-check mb-2" name="options-outlined" id="check-{{p.id}}"
-                                autocomplete="off" onclick="getPassions('{{p.value}}')">
-                            <label class="btn btn-outline-danger" for="check-{{p.id}}">{{p.value}}</label>
+                        <input type="checkbox" class="btn-check mb-2" name="options-outlined" id="check-{{p.id}}"
+                            autocomplete="off" onclick="getPassions('{{p.value}}')">
+                        <label class="btn btn-outline-danger" for="check-{{p.id}}">{{p.value}}</label>
                         {% endfor %}
                     </div>
-                 </div>
-                    
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Save changes</button>
-                     </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Save changes</button>
+            </div>
             </form>
         </div>
     </div>
@@ -136,7 +138,8 @@
                         </button>
                     </div>
                     <div class="col-sm-4 mt-3">
-                        <button class="btn btn-light" data-bs-dismiss="modal" onclick="lookingFor('Long-Term Open to Short')">
+                        <button class="btn btn-light" data-bs-dismiss="modal"
+                            onclick="lookingFor('Long-Term Open to Short')">
                             <br>
                             <img height="40" src="{% static 'img/org/LTOS.png' %}" alt="">
                             <br>
@@ -147,7 +150,8 @@
                         </button>
                     </div>
                     <div class="col-sm-4 mt-3">
-                        <button class="btn btn-light"  data-bs-dismiss="modal" onclick="lookingFor('Short-Term Open to Long')">
+                        <button class="btn btn-light" data-bs-dismiss="modal"
+                            onclick="lookingFor('Short-Term Open to Long')">
                             <br>
                             <img height="40" src="{% static 'img/org/STOL.png' %}" alt="">
                             <br>
@@ -176,12 +180,13 @@
                             <br>
                             New Friends
                             <br>
-                            
+
                             <br><br>
                         </button>
                     </div>
                     <div class="col-sm-4 mt-3">
-                        <button class="btn btn-light" data-bs-dismiss="modal" onclick="lookingFor('Still figuring it out')" >
+                        <button class="btn btn-light" data-bs-dismiss="modal"
+                            onclick="lookingFor('Still figuring it out')">
                             <br>
                             <img height="40" src="{% static 'img/org/SFIO.png' %}" alt="">
                             <br>
@@ -192,87 +197,88 @@
                         </button>
 
                         <br><br>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script>
+        <script>
 
-        var gender;
-        var gop = 0;
-        var bdate;
-        var iig;
-        const interests = [];
-        var lf;
-        function lookingFor(foo){
-            lf = foo;
-            document.getElementById('selected_lf').innerHTML = `<button class="btn btn-danger" disabled id="${lf}"> ${lf} </button>`;
-            document.getElementById('lf').value = foo;
-        }
-
-        document.getElementById("birth-date").addEventListener("change", function() {
-            bdate =  document.getElementById("birth-date");
-        });
-
-        function getGender(g){
-            gender = g
-        }
-
-        function getInterestedGender(g){
-            iig = g
-            console.log(iig)
-        }
-
-        function setGOP(){
-            if (gop == 1){
-                gop = 0
-            }else{
-                gop = 1
+            var gender;
+            var gop = 0;
+            var bdate;
+            var iig;
+            const interests = [];
+            var lf;
+            function lookingFor(foo) {
+                lf = foo;
+                document.getElementById('selected_lf').innerHTML = `<button class="btn btn-danger" disabled id="${lf}"> ${lf} </button>`;
+                document.getElementById('lf').value = foo;
             }
-        };
 
-        function getPassions(passion){
-            if (interests.includes(passion)){
-                interests.pop(passion);
-                console.log(passion)
-                console.log("header" + document.getElementById(passion))
-                document.getElementById(passion).remove();
-            }else{o
-                interests.push(passion);
-                document.getElementById('selected_passion').innerHTML += `<button class="btn btn-danger" disabled id="${passion}"> ${passion} </button>`;
-            }
-            
-            document.getElementById('interests').value = JSON.stringify(interests);
-        }
-
-
-
-        /*var settings = {
-            "url": "http://127.0.0.1:8000/profile/details",
-            "method": "POST",
-            "timeout": 0,
-            "headers": {
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-            "data": {
-              "gender": gender,
-              "gop": gop,
-              "bdate": bdate,
-              "iig": iig,
-              "interests": interests,
-              "lf": lf,
-              csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
-            }
-          };
-          
-        function submitForm(){
-            console.log(gender)
-            $.ajax(settings).done(function (response) {
-              console.log(response.status);
+            document.getElementById("birth-date").addEventListener("change", function () {
+                bdate = document.getElementById("birth-date");
             });
-        }*/
 
-    </script>
+            function getGender(g) {
+                gender = g
+            }
 
-    {% endblock content %}
+            function getInterestedGender(g) {
+                iig = g
+                console.log(iig)
+            }
+
+            function setGOP() {
+                if (gop == 1) {
+                    gop = 0
+                } else {
+                    gop = 1
+                }
+            };
+
+            function getPassions(passion) {
+                if (interests.includes(passion)) {
+                    interests.pop(passion);
+                    console.log(passion)
+                    console.log("header" + document.getElementById(passion))
+                    document.getElementById(passion).remove();
+                } else {
+                    o
+                    interests.push(passion);
+                    document.getElementById('selected_passion').innerHTML += `<button class="btn btn-danger" disabled id="${passion}"> ${passion} </button>`;
+                }
+
+                document.getElementById('interests').value = JSON.stringify(interests);
+            }
+
+
+
+            /*var settings = {
+                "url": "http://127.0.0.1:8000/profile/details",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                  "Content-Type": "application/x-www-form-urlencoded",
+                },
+                "data": {
+                  "gender": gender,
+                  "gop": gop,
+                  "bdate": bdate,
+                  "iig": iig,
+                  "interests": interests,
+                  "lf": lf,
+                  csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                }
+              };
+              
+            function submitForm(){
+                console.log(gender)
+                $.ajax(settings).done(function (response) {
+                  console.log(response.status);
+                });
+            }*/
+
+        </script>
+
+        {% endblock content %}
