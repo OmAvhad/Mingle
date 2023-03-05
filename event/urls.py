@@ -12,4 +12,5 @@ urlpatterns = [
     path('get-register-data/',getRegisterData),
     path('no_of_registeration/',no_of_registeration),
     path('get-register-data/',getRegisterData),
+    path('user_registered_events/',user_registered_events)
 ]

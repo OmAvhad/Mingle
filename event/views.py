@@ -176,3 +176,6 @@ def create_event(request):
 def no_of_registeration(request):
     count  = UserAppliedforEvents.objects.all().count()
     return JsonResponse({"count":count})
+
+def user_registered_events(request):
+    return render(request, 'user/user_events.html')
